@@ -23,16 +23,34 @@ struct PlayView: View {
 
     let avPlayer = AVPlayer(url: Movie.defaultPlayViewVideoURL)
     
+    // timer setup
+    @State var timeRemaining = 60000
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    let formatter: DateComponentsFormatter = {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.unitsStyle = .positional
+        formatter.zeroFormattingBehavior = .pad
+        return formatter
+    }()
+    
     var body: some View {
         VStack {
-            Text("Timeleft")
+            Text("Time Remaining")
+            Text("\(formatter.string(from: TimeInterval(timeRemaining)) ?? "00:00:00")")
+                .onReceive(timer) { _ in
+                    if timeRemaining > 0 {
+                        timeRemaining -= 1
+                    }
+                }
+            
             ZStack{
                 VideoPlayer(player: avPlayer)
                     .scaledToFit()
                     .frame(width: 300, height: 300)
                 
                 VStack(alignment: .leading){
-                    Text("Dare #2: act like a dog")
+                    Text("Dare #2: Streak a field")
                         .font(.title)
                         .foregroundColor(.white)
                     .padding()

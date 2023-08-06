@@ -24,6 +24,7 @@ struct LeaderboardView: View {
             profilePic: userData.profileImage
         )
         
+        //originally the line below said "var", but xcode said to change it to let
         var users = User.testUsers + [currentUser]
         
         return users.sorted { $0.ranking < $1.ranking }

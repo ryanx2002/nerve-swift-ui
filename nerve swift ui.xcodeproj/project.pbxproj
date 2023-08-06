@@ -69,11 +69,14 @@
 				97C5B06E2A8012D300AA3D17 /* STREAK-VIDEO.mp4 */,
 				9771EBC52A7EFC2400C581E7 /* Preview Content */,
 				9771EBC72A7EFC2400C581E7 /* nerve_swift_uiApp.swift */,
+				9771EBC32A7EFC2400C581E7 /* LeaderboardView.swift */,
+				97C5B06C2A80109B00AA3D17 /* User.swift */,
+				9771EBC22A7EFC2400C581E7 /* PlayView.swift */,
 				9771EBC82A7EFC2400C581E7 /* ProfilePageView.swift */,
 				9771EBC92A7EFC2400C581E7 /* TabViewContainer.swift */,
 				9771EBCA2A7EFC2400C581E7 /* BottomBannerView.swift */,
-				9771EBCB2A7EFC2400C581E7 /* Onboarding */,
 				97C5B06A2A80093400AA3D17 /* Movie.swift */,
+				9771EBCB2A7EFC2400C581E7 /* Onboarding */,
 			);
 			path = "nerve-swift-ui";
 			sourceTree = "<group>";
@@ -81,9 +84,6 @@
 		9771EBC52A7EFC2400C581E7 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				9771EBC32A7EFC2400C581E7 /* LeaderboardView.swift */,
-				97C5B06C2A80109B00AA3D17 /* User.swift */,
-				9771EBC22A7EFC2400C581E7 /* PlayView.swift */,
 				9771EBC62A7EFC2400C581E7 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
