@@ -4,16 +4,30 @@
 //
 //  Created by Ryan Xie on 7/31/23.
 //
-//I like
 
 import SwiftUI
 
 struct LeaderboardView: View {
     
     @State private var currentPage: String? = nil
-    @State private var users = User.testUsers
     @EnvironmentObject var navModel: NavigationModel
+    @EnvironmentObject var userData: UserData
     
+    
+    private var users: [User] {
+        
+        let currentUser = User(
+            id: UUID(),
+            name: userData.name,
+            ranking: Int.random(in: 1...100),
+            views: Int.random(in: 5000...1000000),
+            profilePic: userData.profileImage
+        )
+        
+        var users = User.testUsers + [currentUser]
+        
+        return users.sorted { $0.ranking < $1.ranking }
+    }
     
     var body: some View {
         NavigationStack(path: $navModel.leaderboardPath) {
@@ -23,10 +37,20 @@ struct LeaderboardView: View {
                         ForEach(users){ user in
                             HStack{
                                 Text(String(user.ranking))
-                                Image(systemName: "person")
-                                    .background(Color.gray)
-                                    .cornerRadius(20)
-                                    .frame(width: 40, height: 40)
+                                if let profilePic = user.profilePic {
+                                    Image(uiImage: profilePic)
+                                        .resizable()
+//                                        .aspectRatio(contentMode: .fit)
+                                        .background(Color.gray)
+                                        .frame(width: 40, height: 40)
+                                        .cornerRadius(20)
+                                } else {
+                                    Image(systemName: "person")
+                                        .resizable()
+                                        .background(Color.gray)
+                                        .frame(width: 40, height: 40)
+                                        .cornerRadius(20)
+                                }
                                 Text(user.name)
                                 Spacer()
                                 Text(String(user.views))
@@ -113,17 +137,4 @@ struct LeaderboardView_Previews: PreviewProvider {
 }
 
 
-struct User: Identifiable {
-    let id: UUID
-    let name: String
-    let ranking: Int
-    let views: Int
-    let profilePic: String
-    
-    static let testUsers = [
-        User (id: UUID(), name: "Alex Holdings", ranking: 1, views: 69000, profilePic: ""),
-        User (id: UUID(), name: "Kate Willimas", ranking: 2, views: 58000, profilePic: ""),
 
-    ]
-    
-}

@@ -10,27 +10,8 @@ import PhotosUI
 import SwiftUI
 import AVFoundation
 
-struct Movie: Transferable {
-    
-    let url: URL
-
-    static var transferRepresentation: some TransferRepresentation {
-        FileRepresentation(contentType: .movie) { movie in
-            SentTransferredFile(movie.url)
-        } importing: { received in
-            let copy = URL.documentsDirectory.appending(path: "movie.mp4")
-
-            if FileManager.default.fileExists(atPath: copy.path()) {
-                try FileManager.default.removeItem(at: copy)
-            }
-
-            try FileManager.default.copyItem(at: received.file, to: copy)
-            return Self.init(url: copy)
-        }
-    }
-}
-
 struct PlayView: View {
+    
     enum LoadState {
         case unknown, loading, loaded(Movie), failed
     }
@@ -38,16 +19,22 @@ struct PlayView: View {
     @State private var selectedItem: PhotosPickerItem?
     @State private var loadState = LoadState.unknown
     @EnvironmentObject var navModel: NavigationModel
+    @EnvironmentObject var userData: UserData
 
-
+    let avPlayer = AVPlayer(url: Movie.defaultPlayViewVideoURL)
+    
     var body: some View {
         VStack {
             Text("Timeleft")
             ZStack{
-                Image("Group 7")
+                VideoPlayer(player: avPlayer)
+                    .scaledToFit()
+                    .frame(width: 300, height: 300)
+                
                 VStack(alignment: .leading){
                     Text("Dare #2: act like a dog")
                         .font(.title)
+                        .foregroundColor(.white)
                     .padding()
                 }
                 .frame(width: 200, height: 200)
@@ -68,12 +55,28 @@ struct PlayView: View {
                 Text("Import failed")
             }
         }
+        .onAppear {
+            avPlayer.play()
+        
+        }
         .onChange(of: selectedItem) { _ in
             Task {
                 do {
                     loadState = .loading
 
                     if let movie = try await selectedItem?.loadTransferable(type: Movie.self) {
+                        
+                        let destinationURL = URL.documentsDirectory.appending(component: userData.id.uuidString, directoryHint: .isDirectory)
+                            .appending(component: movie.id.uuidString + ".mp4")
+                        
+                        do {
+                            try FileManager.default.moveItem(at: movie.url, to: destinationURL)
+                            loadState = .loaded(movie)
+                        } catch {
+                            print(error.localizedDescription, error)
+                            loadState = .failed
+                        }
+                        
                         loadState = .loaded(movie)
                     } else {
                         loadState = .failed
@@ -86,7 +89,11 @@ struct PlayView: View {
     }
 }
 
-
+struct PlayView_Previews: PreviewProvider {
+    static var previews: some View {
+        PlayView()
+    }
+}
 
 
 
