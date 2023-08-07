@@ -59,8 +59,10 @@ struct OnboardingView: View {
                     Button(action: getStartedButtonPressed) {
                         Text("Play")
                             .foregroundColor(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)))
-                            .font(.system(size: 30))
-                            .bold()
+                            .font(.system(size: 20))
+                            .fontWeight(.medium)
+                            .monospaced()
+                            .kerning(1.0)
                             .frame(width: 200)
                             .frame(height: 50)
                             .cornerRadius(10)
@@ -78,17 +80,8 @@ struct OnboardingView: View {
                                 }
                             )
                     }
-                    .border(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)), width: 3)
-                    .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 4)
-                    
-                    Spacer()
-                    
-                    Text("By tapping Play, you agree to our")
-                        .multilineTextAlignment(.center)
-                        .font(.system(size: 10))
-                    Text("Terms of Service and Privacy Policy")
-                        .multilineTextAlignment(.center)
-                        .font(.system(size: 10))
+                    .border(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)), width: 2)
+                    .shadow(color: Color.black.opacity(0.25), radius: 5, x: 0, y: 4)
                     
                 }
             }

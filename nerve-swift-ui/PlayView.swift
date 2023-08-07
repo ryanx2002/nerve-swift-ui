@@ -20,6 +20,7 @@ struct PlayView: View {
     @State private var loadState = LoadState.unknown
     @EnvironmentObject var navModel: NavigationModel
     @EnvironmentObject var userData: UserData
+    @State private var showSecondScreen: Bool = false
 
     let avPlayer = AVPlayer(url: Movie.defaultPlayViewVideoURL)
     
@@ -68,7 +69,7 @@ struct PlayView: View {
                             .padding(.bottom, 5)
                     }
                     .background(Color.black.opacity(0.3))
-                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     
                     Spacer()
                     Spacer()
@@ -120,6 +121,9 @@ struct PlayView: View {
                                     .mask(Rectangle().cornerRadius(10))
                                 }
                             )
+                        .fullScreenCover(isPresented: $showSecondScreen, content: {
+                            SecondScreen()
+                        })
                     }
                     .border(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)), width: 3)
                     .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 4)
@@ -180,11 +184,62 @@ struct PlayView: View {
                     loadState = .failed
                 }
             }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                showSecondScreen = true
+            }
         }
     }
     
     func profilePressed() {
         navModel.leaderboardPath.append(Screen.profile)
+    }
+}
+
+struct SecondScreen: View {
+    @Environment(\.presentationMode) var presentationMode
+    
+    var body: some View {
+        ZStack{
+            Color.black
+                .ignoresSafeArea()
+            
+            VStack {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }, label: {
+                        Image(systemName: "xmark")
+                            .foregroundColor(.white)
+                            .font(.title)
+                            .padding(20)
+                    })
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Spacer()
+                Spacer()
+                
+                Text("$200")
+                    .font(.system(size: 80))
+                    .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+                Text("pending")
+                    .font(.system(size: 40))
+                    .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+                
+                Spacer()
+                
+                Text("Your dare is being reviewed. \nIt'll show up on this page for now. \nYou'll earn $200 once it's verified.")
+                    .font(.system(size: 12))
+                    .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+
+                Spacer()
+                Spacer()
+                Spacer()
+            }
+            
+        }
     }
 }
 

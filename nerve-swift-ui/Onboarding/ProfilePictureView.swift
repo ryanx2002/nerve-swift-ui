@@ -35,10 +35,12 @@ struct ProfilePictureView: View {
     
     var body: some View {
         VStack {
-                        
+                  
+            Spacer()
+            
             Text("Choose a profile picture")
                 .font(.system(size: 20))
-                .foregroundColor(Color.pink.opacity(0.65))
+                .foregroundColor(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)))
                 .bold()
                 .monospaced()
                 .kerning(1.0)
@@ -70,19 +72,35 @@ struct ProfilePictureView: View {
                         
             Button (action: finishButtonPressed) {
                 Text ("Finish")
-                    .foregroundColor(.pink.opacity(0.65))
-                    .bold()
-                    .shadow(color: Color.pink.opacity(0.65), radius: 10)
-                    .cornerRadius(10)
+                    .foregroundColor(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)))
+                    .font(.system(size: 20))
+                    .fontWeight(.medium)
+                    .monospaced()
+                    .kerning(1.0)
                     .frame(width: 200)
                     .frame(height: 50)
-                    .border(Color.pink)
-                    .colorScheme(.light)
-                    .shadow(color: Color.pink.opacity(0.95), radius: 20)
+                    .cornerRadius(10)
+                    .background(
+                        ZStack {
+                            Rectangle()
+                                .fill(Color.white)
+                                .cornerRadius(10)
+                            LinearGradient(
+                                gradient: Gradient(colors: [Color.white.opacity(0.3), Color.clear]),
+                                startPoint: .top,
+                                endPoint: .bottom
+                            )
+                            .mask(Rectangle().cornerRadius(10))
+                        }
+                    )
             }
+            .border(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)), width: 2)
+            .shadow(color: Color.black.opacity(0.25), radius: 5, x: 0, y: 4)
             
+            Spacer()
         }
         
+        .background(Color(UIColor(red: 0.988, green: 0.965, blue: 0.953, alpha: 1)))
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading:
             Button(action: {
