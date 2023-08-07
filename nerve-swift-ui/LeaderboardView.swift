@@ -19,13 +19,13 @@ struct LeaderboardView: View {
         let currentUser = User(
             id: UUID(),
             name: userData.name,
-            ranking: Int.random(in: 1...100),
-            views: Int.random(in: 5000...1000000),
-            profilePic: userData.profileImage
+            ranking: Int.random(in: 6...7),
+            views: Int.random(in: 0...1),
+            profilePic: getSavedImage(named: "profile.jpg") ?? UIImage(systemName: "person.circle")!
         )
         
         //originally the line below said "var", but xcode said to change it to let
-        var users = User.testUsers + [currentUser]
+        let users = User.testUsers + [currentUser]
         
         return users.sorted { $0.ranking < $1.ranking }
     }
@@ -34,6 +34,18 @@ struct LeaderboardView: View {
         NavigationStack(path: $navModel.leaderboardPath) {
             if navModel.hasFinishedOnboarding {
                 VStack{
+                    
+                    HStack {
+                        Spacer()
+                        Image(systemName: "building.2")
+                        Image(systemName: "globe")
+                    }
+                    
+                    
+                    Image("yaleleaderboard")
+                        .frame(width: 360, height: 180)
+                        .padding(.top, 40)
+                    
                     List{
                         ForEach(users){ user in
                             HStack{
@@ -42,7 +54,7 @@ struct LeaderboardView: View {
                                     Image(uiImage: profilePic)
                                         .resizable()
 //                                        .aspectRatio(contentMode: .fit)
-                                        .background(Color.gray)
+                                        .background(Color.white)
                                         .frame(width: 40, height: 40)
                                         .cornerRadius(20)
                                 } else {
@@ -61,6 +73,7 @@ struct LeaderboardView: View {
                         }
                     }
                     
+                    
 //                    Button(action: playButtonPressed) {
 //                        Text("This is part of the leaderboard screen, not tab bar")
 //                            .foregroundColor(.black)
@@ -70,7 +83,7 @@ struct LeaderboardView: View {
 //                    }
                 }
 
-                .navigationTitle("Leaderboard")
+                .navigationTitle("Yale Leaderboard")
                 .addProfileToolbar(pressedHandler: profilePressed)
 //                .toolbar {
 //                    Button(action: profilePressed) {
@@ -100,14 +113,14 @@ struct LeaderboardView: View {
 //                            ProfilePageView()
 //                        }
 //                    }
-            } else {
+            } else
+            {
                 Color.white
                     .onAppear {
                         var transaction = Transaction()
-                        transaction.disablesAnimations = true
                         withTransaction(transaction) {
                             navModel.isOnboarding = true
-                        }   
+                        }
                     }
                     .fullScreenCover(isPresented: $navModel.isOnboarding) {
                         OnboardingView()

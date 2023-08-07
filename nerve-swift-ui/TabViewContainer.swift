@@ -13,15 +13,15 @@ struct TabViewContainer: View {
     
     var body: some View {
         TabView {
+            PlayView()
+                .tabItem {
+                    Image (systemName: "gamecontroller.fill")
+                    Text ("Play $$$")
+                }
             LeaderboardView()
                 .tabItem {
                     Image (systemName: "trophy")
-                    Text ("Leaderboardsss")
-                }
-            PlayView()
-                .tabItem {
-                    Image (systemName: "play.rectangle")
-                    Text ("Play")
+                    Text ("Leaderboard")
                 }
         }
         .toolbar {

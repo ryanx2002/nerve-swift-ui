@@ -13,7 +13,6 @@ enum Screen: Hashable {
     var prompt: String? {
         switch self {
         case .phoneNumber: return "Enter your phone number"
-        case .confirmationCode: return "Enter the confirmation code"
         case .name: return "First and Last Name"
         case .venmo: return "Enter your Venmo to get paid"
         default: return nil
@@ -22,26 +21,22 @@ enum Screen: Hashable {
     
     var next: Screen? {
         switch self {
-        case .phoneNumber: return .confirmationCode
-        case .confirmationCode: return .name
+        case .phoneNumber: return .name
         case .name: return .venmo
         case .venmo: return .profilePicture
         case .profilePicture: return .leaderboard
-        case .leaderboard: return nil
-        case .profile: return nil
+        default: return nil
         }
     }
     
     var valueName: String? {
         switch self {
         case .phoneNumber: return "Phone Number"
-        case .confirmationCode: return "Confirmation Code"
         case .name: return "Name"
         case .venmo: return "Venmo"
         case .profilePicture: return "Profile Picture"
         case .leaderboard: return"leaderboard"
-        case .profile: return nil
-
+        default: return nil
         }
     }
 }

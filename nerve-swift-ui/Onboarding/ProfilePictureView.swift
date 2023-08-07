@@ -7,6 +7,23 @@
 
 import SwiftUI
 
+func saveImage(image: UIImage) {
+    guard let data = image.jpegData(compressionQuality: 1) else {
+        return
+    }
+    guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else {
+        return
+    }
+    do {
+        try data.write(to: directory.appendingPathComponent("profile.jpeg")!)
+        return
+    } catch {
+        print(error.localizedDescription)
+        return
+    }
+}
+
+
 struct ProfilePictureView: View {
     
     @Environment(\.presentationMode) var presentationMode
@@ -31,7 +48,7 @@ struct ProfilePictureView: View {
                 shouldShowImagePicker.toggle()
             } label: {
                 VStack {
-                    if let image = userData.profileImage {
+                    if let image {
                         Image(uiImage: image)
                             .resizable()
                             .scaledToFill()
@@ -82,16 +99,28 @@ struct ProfilePictureView: View {
         
         .navigationViewStyle(StackNavigationViewStyle())
         .fullScreenCover(isPresented: $shouldShowImagePicker, onDismiss: nil) {
-            ImagePicker(image: $userData.profileImage)
+            ImagePicker(image: $image)
                 .ignoresSafeArea()
         }
     }
     
     func finishButtonPressed () {
+        
+        if (image != nil) {
+            saveImage(image: image!)
+        }
+        
+        let defaults = UserDefaults.standard
+        defaults.set(userData.name, forKey: "name")
+        defaults.set(userData.phoneNumber, forKey: "phoneNumber")
+        defaults.set(userData.venmo, forKey: "venmo")
+        defaults.set(true, forKey: "onboardingCompleted")
+        
 //        navModel.leaderboardPath.append(Screen.leaderboard)
         navModel.leaderboardPath.removeLast(navModel.leaderboardPath.count)
-                navModel.isOnboarding = false
-                navModel.hasFinishedOnboarding = true
+        navModel.isOnboarding = false
+        navModel.hasFinishedOnboarding = true
+        defaults.set(true, forKey: "hasFinishedOnboarding")
     }
 }
 

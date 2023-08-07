@@ -36,7 +36,11 @@ struct PlayView: View {
     
     var body: some View {
         VStack {
-            Text("Time Remaining")
+            HStack {
+                Image(systemName: "hourglass")
+                Text("Time Remaining")
+            }
+            
             Text("\(formatter.string(from: TimeInterval(timeRemaining)) ?? "00:00:00")")
                 .onReceive(timer) { _ in
                     if timeRemaining > 0 {
@@ -50,10 +54,12 @@ struct PlayView: View {
                     .frame(width: 300, height: 300)
                 
                 VStack(alignment: .leading){
-                    Text("Dare #2: Streak a field")
+                    Text("Dare #1: Streak a field")
                         .font(.title)
                         .foregroundColor(.white)
-                    .padding()
+                    Text("$200")
+                        .font(.title)
+                        .foregroundColor(.white)
                 }
                 .frame(width: 200, height: 200)
             }
@@ -73,6 +79,13 @@ struct PlayView: View {
                 Text("Import failed")
             }
         }
+        
+        .navigationTitle("Play")
+        .addProfileToolbar(pressedHandler: profilePressed)
+        .onDisappear {
+            avPlayer.pause()
+        }
+        
         .onAppear {
             avPlayer.play()
         
@@ -84,8 +97,7 @@ struct PlayView: View {
 
                     if let movie = try await selectedItem?.loadTransferable(type: Movie.self) {
                         
-                        let destinationURL = URL.documentsDirectory.appending(component: userData.id.uuidString, directoryHint: .isDirectory)
-                            .appending(component: movie.id.uuidString + ".mp4")
+                        let destinationURL = URL.documentsDirectory.appending(component: "movie.mp4")
                         
                         do {
                             try FileManager.default.moveItem(at: movie.url, to: destinationURL)
@@ -104,6 +116,10 @@ struct PlayView: View {
                 }
             }
         }
+    }
+    
+    func profilePressed() {
+        navModel.leaderboardPath.append(Screen.profile)
     }
 }
 

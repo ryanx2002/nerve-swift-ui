@@ -8,6 +8,13 @@
 import AVKit
 import SwiftUI
 
+func getSavedImage(named: String) -> UIImage? {
+    if let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) {
+        return UIImage(contentsOfFile: URL(fileURLWithPath: dir.absoluteString).appendingPathComponent(named).path)
+    }
+    return nil
+}
+
 struct ProfilePageView: View {
     
     @EnvironmentObject var userData: UserData
@@ -17,7 +24,7 @@ struct ProfilePageView: View {
     
     var movieURLs: [URL] {
         
-        let userDirectoryURL = URL.documentsDirectory.appending(component: userData.id.uuidString, directoryHint: .isDirectory)
+        let userDirectoryURL = URL.documentsDirectory.appending(component: "movie.mp4")
         
         guard FileManager.default.fileExists(atPath: userDirectoryURL.path()) else {
             print(#function, "user directory does not exist")
@@ -37,7 +44,7 @@ struct ProfilePageView: View {
     var body: some View {
         ScrollView {
             VStack {
-                Image(uiImage: userData.profileImage ?? UIImage(systemName: "person.circle")!)
+                Image(uiImage: getSavedImage(named: "profile.jpg") ?? UIImage(systemName: "person.circle")!)
                     .resizable()
                     .frame(width: 100, height: 100)
                     .clipShape(Circle())

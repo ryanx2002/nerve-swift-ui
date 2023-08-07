@@ -68,9 +68,6 @@ struct OnboardingFormView: View {
             return $userData.name
         case .phoneNumber:
             return $userData.phoneNumber
-            
-        case .confirmationCode:
-            return $userData.confirmationCode
         case .venmo:
             return $userData.venmo
         default: return Binding(get: { "empty" }, set: { _ in })

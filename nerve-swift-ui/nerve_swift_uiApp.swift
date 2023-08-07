@@ -11,19 +11,22 @@ class NavigationModel: ObservableObject {
     
     @Published var leaderboardPath: NavigationPath
     @Published var playPath: NavigationPath
-    @Published var isOnboarding: Bool
     @Published var hasFinishedOnboarding: Bool
+    @Published var isOnboarding: Bool
     
     init() {
+        let userDefaults = UserDefaults.standard
         self.leaderboardPath = NavigationPath()
         self.playPath = NavigationPath()
+        self.hasFinishedOnboarding = userDefaults.bool(forKey:"hasFinishedOnboarding")
         self.isOnboarding = false
-        self.hasFinishedOnboarding = false
     }
 }
 
 @main
 struct nerve_swift_uiApp: App {
+    
+    
     
     @StateObject var userData = UserData()
     @StateObject var navigationModel = NavigationModel()
@@ -32,7 +35,6 @@ struct nerve_swift_uiApp: App {
     var body: some Scene {
         WindowGroup {
             TabViewContainer()
-//            OnboardingView()
                 .environmentObject(userData)
                 .environmentObject(navigationModel)
             
