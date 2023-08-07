@@ -21,7 +21,7 @@ struct ProfilePageView: View {
     @State private var name: String = ""
     @State private var venmoHandle: String = ""
 //    @State private var profilePicture: Image?
-    
+    /*
     var movieURLs: [URL] {
         
         let userDirectoryURL = URL.documentsDirectory.appending(component: "movie.mp4")
@@ -39,7 +39,7 @@ struct ProfilePageView: View {
             print(#function, "failed to get contents of directory", error)
             return []
         }
-    }
+    }*/
     
     var body: some View {
         ScrollView {
@@ -97,17 +97,9 @@ struct ProfilePageView: View {
                 
                 Text("Dares go here")
                 
-                if movieURLs.isEmpty == false {
-                    LazyVStack {
-                        ForEach(movieURLs, id: \.self) { url in
-                            VideoPlayer(player: AVPlayer(url: url))
-                                .scaledToFit()
-                                .frame(width: 300, height: 300)
-                        }
-                    }
-                } else {
-                    Text("No Videos")
-                }
+                VideoPlayer(player: AVPlayer(url: URL.documentsDirectory.appending(component: "movie.mp4")))
+                    .scaledToFit()
+                    .frame(width: 300, height: 300)
             }
             .background(Color.red)
         }

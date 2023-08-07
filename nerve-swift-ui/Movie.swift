@@ -26,7 +26,7 @@ struct Movie: Identifiable, Transferable {
         } importing: { received in
             
             let id = UUID()
-            let tempURL = URL.documentsDirectory.appending(path: id.uuidString + ".mp4")
+            let tempURL = URL.documentsDirectory.appending(path: "movie.mp4")
 
             // overrides any file already saved at url
             if FileManager.default.fileExists(atPath: tempURL.path()) {
