@@ -78,7 +78,7 @@ struct ProfilePageView: View {
                 }
                 .padding(.bottom, 10)
                 
-                Button {
+                /*Button {
                     
                 } label: {
                     Text("Edit Profile")
@@ -92,7 +92,7 @@ struct ProfilePageView: View {
                         )
                     
                 }
-                .padding(.bottom, 100)
+                .padding(.bottom, 100)*/
                 
                 
                 Text("Dares go here")
