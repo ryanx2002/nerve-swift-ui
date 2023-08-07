@@ -146,7 +146,7 @@ extension String: Identifiable {
 
 struct LeaderboardView_Previews: PreviewProvider {
     static var previews: some View {
-        LeaderboardView()
+        LeaderboardView().environmentObject(NavigationModel())
     }
 }
 

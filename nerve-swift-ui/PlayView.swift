@@ -36,32 +36,58 @@ struct PlayView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Image(systemName: "hourglass")
-                Text("Time Remaining")
-            }
             
-            Text("\(formatter.string(from: TimeInterval(timeRemaining)) ?? "00:00:00")")
-                .onReceive(timer) { _ in
-                    if timeRemaining > 0 {
-                        timeRemaining -= 1
-                    }
-                }
-            
-            ZStack{
-                VideoPlayer(player: avPlayer)
+            ZStack(alignment: .center){
+                VideoPlayer(player: avPlayer)/*
                     .scaledToFit()
-                    .frame(width: 300, height: 300)
+                    .scaleEffect(2.5)
+                    .aspectRatio(contentMode: .fill)*/
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
                 
-                VStack(alignment: .leading){
-                    Text("Dare #1: Streak a field")
-                        .font(.title)
-                        .foregroundColor(.white)
-                    Text("$200")
-                        .font(.title)
-                        .foregroundColor(.white)
+                VStack {
+                    VStack {
+                        HStack {
+                            Image(systemName: "hourglass")
+                                .foregroundColor(.white)
+                            Text("Time Remaining")
+                                .foregroundColor(.white)
+                        }
+                        .padding(.top, 5)
+                        .padding(.horizontal, 5)
+//                        .alignment(.center)
+                        
+                        Text("\(formatter.string(from: TimeInterval(timeRemaining)) ?? "00:00:00")")
+                            .onReceive(timer) { _ in
+                                if timeRemaining > 0 {
+                                    timeRemaining -= 1
+                                }
+                            }
+                            .foregroundColor(.white)
+                            .padding(.bottom, 5)
+                    }
+                    .background(Color.black.opacity(0.3))
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    
+                    VStack(alignment: .leading){
+                        Text("Streak a field")
+                            .font(.title)
+                            .foregroundColor(Color(UIColor(red: 250, green: 255, blue: 0, alpha: 1)))
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity)
+                            .bold()
+                            .padding(.bottom, 10)
+                        Text("$200")
+                            .font(.system(size: 45))
+                            .foregroundColor(Color(UIColor(red: 250, green: 255, blue: 0, alpha: 1)))
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity)
+                            .bold()
+                    }
+                    .frame(width: 220, height: 150)
+                    .background(Color.black.opacity(0.4))
+                    .multilineTextAlignment(.center)
                 }
-                .frame(width: 200, height: 200)
+                .frame(maxWidth: .infinity, alignment: .center)
             }
             
             PhotosPicker("Upload", selection: $selectedItem, matching: .videos)
