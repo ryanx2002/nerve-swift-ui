@@ -35,13 +35,6 @@ struct LeaderboardView: View {
             if navModel.hasFinishedOnboarding {
                 VStack{
                     
-                    HStack {
-                        Spacer()
-                        Image(systemName: "building.2")
-                        Image(systemName: "globe")
-                    }
-                    
-                    
                     Image("yaleleaderboard")
                         .frame(width: 360, height: 180)
                         .padding(.top, 40)
@@ -152,3 +145,8 @@ struct LeaderboardView_Previews: PreviewProvider {
 
 
 
+//HStack {
+//    Spacer()
+//    Image(systemName: "building.2")
+//    Image(systemName: "globe")
+//}

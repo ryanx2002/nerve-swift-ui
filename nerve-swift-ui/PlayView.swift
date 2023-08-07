@@ -35,16 +35,18 @@ struct PlayView: View {
     }()
     
     var body: some View {
-        VStack {
+        ScrollView {
             
             ZStack(alignment: .center){
-                VideoPlayer(player: avPlayer)/*
-                    .scaledToFit()
-                    .scaleEffect(2.5)
-                    .aspectRatio(contentMode: .fill)*/
+                VideoPlayer(player: avPlayer)
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
                 
+                //timer, dare, and upload button
                 VStack {
+                    
+                    Spacer()
+                    
+                    //timer
                     VStack {
                         HStack {
                             Image(systemName: "hourglass")
@@ -54,7 +56,7 @@ struct PlayView: View {
                         }
                         .padding(.top, 5)
                         .padding(.horizontal, 5)
-//                        .alignment(.center)
+                        //                        .alignment(.center)
                         
                         Text("\(formatter.string(from: TimeInterval(timeRemaining)) ?? "00:00:00")")
                             .onReceive(timer) { _ in
@@ -68,6 +70,11 @@ struct PlayView: View {
                     .background(Color.black.opacity(0.3))
                     .frame(maxWidth: .infinity, alignment: .trailing)
                     
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    
+                    //dare
                     VStack(alignment: .leading){
                         Text("Streak a field")
                             .font(.title)
@@ -82,29 +89,62 @@ struct PlayView: View {
                             .multilineTextAlignment(.center)
                             .frame(maxWidth: .infinity)
                             .bold()
+                        
                     }
                     .frame(width: 220, height: 150)
                     .background(Color.black.opacity(0.4))
                     .multilineTextAlignment(.center)
+                    
+                    Spacer()
+                    Spacer()
+                    
+                    //upload button
+                    VStack{
+                        PhotosPicker("Upload", selection: $selectedItem, matching: .videos)
+                            .foregroundColor(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)))
+                            .font(.system(size: 30))
+                            .bold()
+                            .frame(width: 200)
+                            .frame(height: 50)
+                            .cornerRadius(10)
+                            .background(
+                                ZStack {
+                                    Rectangle()
+                                        .fill(Color.white)
+                                        .cornerRadius(10)
+                                    LinearGradient(
+                                        gradient: Gradient(colors: [Color.white.opacity(0.3), Color.clear]),
+                                        startPoint: .top,
+                                        endPoint: .bottom
+                                    )
+                                    .mask(Rectangle().cornerRadius(10))
+                                }
+                            )
+                    }
+                    .border(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)), width: 3)
+                    .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 4)
+                    
+                    Spacer()
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
             }
             
-            PhotosPicker("Upload", selection: $selectedItem, matching: .videos)
-
-            switch loadState {
-            case .unknown:
-                EmptyView()
-            case .loading:
-                ProgressView()
-            case .loaded(let movie):
-                VideoPlayer(player: AVPlayer(url: movie.url))
-                    .scaledToFit()
-                    .frame(width: 300, height: 300)
-            case .failed:
-                Text("Import failed")
+            //the uploaded video should appear here
+            VStack{
+                switch loadState {
+                case .unknown:
+                    EmptyView()
+                case .loading:
+                    ProgressView()
+                case .loaded(let movie):
+                    VideoPlayer(player: AVPlayer(url: movie.url))
+                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                case .failed:
+                    Text("Import failed")
+                }
             }
         }
+        
         
         .navigationTitle("Play")
         .addProfileToolbar(pressedHandler: profilePressed)
@@ -114,13 +154,12 @@ struct PlayView: View {
         
         .onAppear {
             avPlayer.play()
-        
         }
         .onChange(of: selectedItem) { _ in
             Task {
                 do {
                     loadState = .loading
-
+                    
                     if let movie = try await selectedItem?.loadTransferable(type: Movie.self) {
                         
                         let destinationURL = URL.documentsDirectory.appending(component: "movie.mp4")

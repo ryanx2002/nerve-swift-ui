@@ -84,10 +84,10 @@
 		9771EBCB2A7EFC2400C581E7 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				97A9A54A2A80C90400DC6FFA /* ProfilePictureView.swift */,
-				9771EBCD2A7EFC2400C581E7 /* OnboardingFormView.swift */,
-				9771EBCE2A7EFC2400C581E7 /* UserData.swift */,
 				9771EBD32A7EFC2400C581E7 /* OnboardingView.swift */,
+				9771EBCD2A7EFC2400C581E7 /* OnboardingFormView.swift */,
+				97A9A54A2A80C90400DC6FFA /* ProfilePictureView.swift */,
+				9771EBCE2A7EFC2400C581E7 /* UserData.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";

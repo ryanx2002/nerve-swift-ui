@@ -46,65 +46,51 @@ struct OnboardingView: View {
     @EnvironmentObject var navModel: NavigationModel
     var body: some View {
         NavigationStack (path: $navModel.leaderboardPath) {
-            VStack {
-                
-                Spacer()
-                    .frame(height: 100)
-                
-                Text("Nerve")
-                    .font(.system(size: 70))
-                    .foregroundColor(Color.pink.opacity(0.65))
-                    .bold()
-                    .monospaced()
-                    .kerning(10.0)
-                    .shadow(color: Color.pink.opacity(0.65), radius: 10)
-                
-                Spacer()
-                    .frame(height: 50)
-                
+            ZStack {
+                Image("openingviewbig")
                 VStack {
-                    HStack{
-                        Image("Group 7")
-                        Image("Group 8")
+                    Text("By pressing 'Play' you're \naccepting the Terms.")
+                        .font(.system(size: 10))
+                        .foregroundColor(.gray.opacity(0.9))
+                        .multilineTextAlignment(.center)
+                        .padding(.top, 350)
+                        .padding(.bottom, 10)
+                    
+                    Button(action: getStartedButtonPressed) {
+                        Text("Play")
+                            .foregroundColor(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)))
+                            .font(.system(size: 30))
+                            .bold()
+                            .frame(width: 200)
+                            .frame(height: 50)
+                            .cornerRadius(10)
+                            .background(
+                                ZStack {
+                                    Rectangle()
+                                        .fill(Color.white)
+                                        .cornerRadius(10)
+                                    LinearGradient(
+                                        gradient: Gradient(colors: [Color.white.opacity(0.3), Color.clear]),
+                                        startPoint: .top,
+                                        endPoint: .bottom
+                                    )
+                                    .mask(Rectangle().cornerRadius(10))
+                                }
+                            )
                     }
-                    HStack{
-                        Spacer()
-                        Text ("Do a dare")
-                        Spacer()
-                        
-                        VStack{
-                            Text ("Earn $$$")
-                            Text ("Get Famous")
-                        }
-                        Spacer()
-                    }
+                    .border(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)), width: 3)
+                    .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 4)
+                    
+                    Spacer()
+                    
+                    Text("By tapping Play, you agree to our")
+                        .multilineTextAlignment(.center)
+                        .font(.system(size: 10))
+                    Text("Terms of Service and Privacy Policy")
+                        .multilineTextAlignment(.center)
+                        .font(.system(size: 10))
+                    
                 }
-                
-                Spacer()
-                    .frame(height: 50)
-                
-                Button(action: getStartedButtonPressed) {
-                    Text("Play")
-                        .foregroundColor(.pink.opacity(0.65))
-                        .bold()
-                        .shadow(color: Color.pink.opacity(0.65), radius: 10)
-                        .cornerRadius(10)
-                        .frame(width: 200)
-                        .frame(height: 50)
-                        .border(Color.pink)
-                        .colorScheme(.light)
-                        .shadow(color: Color.pink.opacity(0.95), radius: 20)
-                }
-                
-                Spacer()
-                
-                Text("By tapping Play, you agree to our")
-                    .multilineTextAlignment(.center)
-                    .font(.system(size: 10))
-                Text("Terms of Service and Privacy Policy")
-                    .multilineTextAlignment(.center)
-                    .font(.system(size: 10))
-                
             }
             
             .navigationDestination(for: Screen.self) { screen in
@@ -130,3 +116,44 @@ struct OnboardingView_Previews: PreviewProvider {
         OnboardingView()
     }
 }
+
+
+
+
+
+/* Group {
+ Spacer()
+ .frame(height: 100)
+ 
+ Text("Nerve")
+ .font(.system(size: 70))
+ .foregroundColor(Color.pink.opacity(0.65))
+ .bold()
+ .monospaced()
+ .kerning(10.0)
+ .shadow(color: Color.pink.opacity(0.65), radius: 10)
+ 
+ Spacer()
+ .frame(height: 50)
+ 
+ VStack {
+ HStack{
+ Image("Group 7")
+ Image("Group 8")
+ }
+ HStack{
+ Spacer()
+ Text ("Do a dare")
+ Spacer()
+ 
+ VStack{
+ Text ("Earn $$$")
+ Text ("Get Famous")
+ }
+ Spacer()
+ }
+ }
+ 
+ Spacer()
+ .frame(height: 50)
+ } */
