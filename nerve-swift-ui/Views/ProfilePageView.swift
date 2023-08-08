@@ -15,10 +15,6 @@ func getSavedImage(named: String) -> UIImage? {
     return nil
 }
 
-func logOut() {
-    UserDefaults.standard.set(false, forKey: "onboardingCompleted")
-}
-
 struct ProfilePageView: View {
     
     @EnvironmentObject var userData: UserData
@@ -27,16 +23,7 @@ struct ProfilePageView: View {
     
     var body: some View {
         ScrollView {
-            VStack {
-                Button {
-                    UserDefaults.resetStandardUserDefaults()
-                } label: {
-                    Text("Log Out")
-                }
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                .padding(10)
-
-                
+            VStack {                
                 Image(uiImage: getSavedImage(named: "profile.jpg") ?? UIImage(systemName: "person.crop.circle")!)
                     .resizable()
                     .frame(width: 100, height: 100)
