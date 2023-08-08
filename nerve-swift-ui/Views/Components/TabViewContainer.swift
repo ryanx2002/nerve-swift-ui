@@ -13,17 +13,29 @@ struct TabViewContainer: View {
     
     var body: some View {
         TabView {
+                    
             PlayView()
                 .tabItem {
                     Image (systemName: "gamecontroller.fill")
-                    Text ("Play $$$")
                 }
+            .padding(30)
+            
+            Spacer()
+            
             LeaderboardView()
                 .tabItem {
-                    Image (systemName: "trophy")
-                    Text ("Leaderboard")
+                    ZStack{
+                        Image ("leaderboardbanner")
+                        Image (uiImage: getSavedImage(named: "profile.jpg") ?? UIImage(systemName: "person.crop.circle")!)
+                            .frame(width: 30, height: 30)
+                            
+                    }
                 }
+            
+            Spacer()
         }
+        .accentColor(.white)
+        .toolbarBackground(Color.black)
         .toolbar {
             Text("Test")
         }
