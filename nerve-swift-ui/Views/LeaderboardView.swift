@@ -19,7 +19,7 @@ struct LeaderboardView: View {
             id: UUID(),
             name: userData.name,
             ranking: Int.random(in: 6...6),
-            views: Int.random(in: 0...1),
+            views: Int.random(in: 0...0),
             profilePic: getSavedImage(named: "profile.jpg") ?? UIImage(systemName: "person.crop.circle")!
         )
         
