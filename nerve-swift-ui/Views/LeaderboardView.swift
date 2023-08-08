@@ -36,7 +36,7 @@ struct LeaderboardView: View {
                     List{
                         Image("yaleleaderboard")
                             .frame(width: 360, height: 180)
-                            .padding(.top, 40)
+                            .padding(.top, 75)
                         ForEach(users){ user in
                             HStack{
                                 Text(String("#\(user.ranking)"))

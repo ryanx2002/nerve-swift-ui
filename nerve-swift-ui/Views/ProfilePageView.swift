@@ -28,7 +28,6 @@ struct ProfilePageView: View {
                     .resizable()
                     .frame(width: 100, height: 100)
                     .clipShape(Circle())
-                    .padding(.top, 30)
                 
                 Text("\(userData.name)")
                     .padding(.bottom, 50)
