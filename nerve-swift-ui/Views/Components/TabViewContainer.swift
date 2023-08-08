@@ -18,24 +18,26 @@ struct TabViewContainer: View {
                 .tabItem {
                     Image (systemName: "gamecontroller.fill")
                 }
-            .padding(30)
+//                .toolbarBackground(
+//                    Color.black,
+//                    for: .tabBar
+//                )
             
             Spacer()
             
             LeaderboardView()
                 .tabItem {
                     ZStack{
-                        Image ("leaderboardbanner")
                         Image (uiImage: getSavedImage(named: "profile.jpg") ?? UIImage(systemName: "person.crop.circle")!)
                             .frame(width: 30, height: 30)
-                            
+                        Image ("leaderboardbanner")
+
                     }
                 }
             
             Spacer()
         }
         .accentColor(.white)
-        .toolbarBackground(Color.black)
         .toolbar {
             Text("Test")
         }

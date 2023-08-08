@@ -39,23 +39,38 @@ struct LeaderboardView: View {
                             .padding(.top, 40)
                         ForEach(users){ user in
                             HStack{
-                                Text(String(user.ranking))
+                                Text(String("#\(user.ranking)"))
+                                    .monospaced()
                                 if let profilePic = user.profilePic {
                                     Image(uiImage: profilePic)
                                         .resizable()
                                         .background(Color.white)
                                         .frame(width: 40, height: 40)
+                                        .border(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)), width: 1.0)
                                         .cornerRadius(20)
+                                        .overlay(
+                                                Circle()
+                                                    .stroke(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)), lineWidth: 1.3)
+                                            )
                                 } else {
                                     Image(systemName: "person.crop.circle")
                                         .resizable()
                                         .frame(width: 40, height: 40)
+                                        .border(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)), width: 1.0)
                                         .cornerRadius(20)
+                                        .overlay(
+                                                Circle()
+                                                    .stroke(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)), lineWidth: 1.3)
+                                            )
+
                                 }
                                 Text(user.name)
+                                    .monospaced()
                                 Spacer()
                                 Text(String(user.views))
+                                    .monospaced()
                                 Image(systemName: "eye")
+                                    .scaleEffect(0.7)
                             }
                             
                         }

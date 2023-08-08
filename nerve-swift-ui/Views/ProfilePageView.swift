@@ -23,7 +23,7 @@ struct ProfilePageView: View {
     
     var body: some View {
         ScrollView {
-            VStack {                
+            VStack {
                 Image(uiImage: getSavedImage(named: "profile.jpg") ?? UIImage(systemName: "person.crop.circle")!)
                     .resizable()
                     .frame(width: 100, height: 100)
