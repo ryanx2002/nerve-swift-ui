@@ -13,15 +13,14 @@ struct LeaderboardView: View {
     @EnvironmentObject var navModel: NavigationModel
     @EnvironmentObject var userData: UserData
     
-    
     private var users: [User] {
         
         let currentUser = User(
             id: UUID(),
             name: userData.name,
-            ranking: Int.random(in: 6...7),
+            ranking: Int.random(in: 6...6),
             views: Int.random(in: 0...1),
-            profilePic: getSavedImage(named: "profile.jpg") ?? UIImage(systemName: "person.circle")!
+            profilePic: getSavedImage(named: "profile.jpg") ?? UIImage(systemName: "person.crop.circle")!
         )
         
         //originally the line below said "var", but xcode said to change it to let
@@ -33,27 +32,28 @@ struct LeaderboardView: View {
     var body: some View {
         NavigationStack(path: $navModel.leaderboardPath) {
             if navModel.hasFinishedOnboarding {
-                VStack{
+//                    ScrollView{
+                VStack {
                     
-                    Image("yaleleaderboard")
-                        .frame(width: 360, height: 180)
-                        .padding(.top, 40)
+                    
                     
                     List{
+                        Image("yaleleaderboard")
+                            .frame(width: 360, height: 180)
+                            .padding(.top, 40)
                         ForEach(users){ user in
                             HStack{
                                 Text(String(user.ranking))
                                 if let profilePic = user.profilePic {
                                     Image(uiImage: profilePic)
                                         .resizable()
-//                                        .aspectRatio(contentMode: .fit)
+//                                      .aspectRatio(contentMode: .fit)
                                         .background(Color.white)
                                         .frame(width: 40, height: 40)
                                         .cornerRadius(20)
                                 } else {
-                                    Image(systemName: "person")
+                                    Image(systemName: "person.crop.circle")
                                         .resizable()
-                                        .background(Color.gray)
                                         .frame(width: 40, height: 40)
                                         .cornerRadius(20)
                                 }
@@ -65,48 +65,33 @@ struct LeaderboardView: View {
                             
                         }
                     }
+                    .listStyle(PlainListStyle())
                     
                     
-//                    Button(action: playButtonPressed) {
-//                        Text("This is part of the leaderboard screen, not tab bar")
-//                            .foregroundColor(.black)
-//                    }
-//                    .navigationDestination(for: String.self) {viewText in
-//                        Text(viewText)
-//                    }
+                    //                    Button(action: playButtonPressed) {
+                    //                        Text("This is part of the leaderboard screen, not tab bar")
+                    //                            .foregroundColor(.black)
+                    //                    }
+                    //                    .navigationDestination(for: String.self) {viewText in
+                    //                        Text(viewText)
+                    //                    }
+                    
                 }
-
+//                    .edgesIgnoringSafeArea(.all)
+                
                 .navigationTitle("Yale Leaderboard")
                 .addProfileToolbar(pressedHandler: profilePressed)
-//                .toolbar {
-//                    Button(action: profilePressed) {
-//                        Image(systemName: "person")
-//                            .background(Color.gray)
-//                            .cornerRadius(20)
-//                            .frame(width: 40, height: 40)
-//                    }
-//                }
+                .foregroundColor(.black)
                 .navigationDestination(for: Screen.self) { screen in
                     switch screen {
                     case .profile: ProfilePageView()
                     default: Text("\(#function) need to add case for this view")
-
+                        
                     }
                 }
-//                    Button(action: {
-//                        currentPage = "Profile"
-//                    }) {
-//                        Image(systemName: "person")
-//                            .background(Color.gray)
-//                            .cornerRadius(20)
-//                            .frame(width: 40, height: 40)
-//                    }
-//                    .fullScreenCover(item: $currentPage) { page in
-//                        if page == "Profile" {
-//                            ProfilePageView()
-//                        }
-//                    }
-            } else
+                
+            }
+            else
             {
                 Color.white
                     .onAppear {
@@ -118,6 +103,7 @@ struct LeaderboardView: View {
                     .fullScreenCover(isPresented: $navModel.isOnboarding) {
                         OnboardingView()
                     }
+                
             }
         }
     }
@@ -126,11 +112,12 @@ struct LeaderboardView: View {
         navModel.leaderboardPath.append(Screen.profile)
     }
     
-//    func playButtonPressed () {
-//        navPath.append("random words")
-//    }
+    //    func playButtonPressed () {
+    //        navPath.append("random words")
+    //    }
     
 }
+
 extension String: Identifiable {
     public var id: String {
         self
@@ -150,3 +137,30 @@ struct LeaderboardView_Previews: PreviewProvider {
 //    Image(systemName: "building.2")
 //    Image(systemName: "globe")
 //}
+
+
+
+//                .toolbar {
+//                    Button(action: profilePressed) {
+//                        Image(systemName: "person")
+//                            .background(Color.gray)
+//                            .cornerRadius(20)
+//                            .frame(width: 40, height: 40)
+//                    }
+//                }
+
+
+
+//                    Button(action: {
+//                        currentPage = "Profile"
+//                    }) {
+//                        Image(systemName: "person")
+//                            .background(Color.gray)
+//                            .cornerRadius(20)
+//                            .frame(width: 40, height: 40)
+//                    }
+//                    .fullScreenCover(item: $currentPage) { page in
+//                        if page == "Profile" {
+//                            ProfilePageView()
+//                        }
+//                    }

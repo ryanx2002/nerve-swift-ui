@@ -14,7 +14,6 @@
 		9771EBD82A7EFC2400C581E7 /* nerve_swift_uiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9771EBC72A7EFC2400C581E7 /* nerve_swift_uiApp.swift */; };
 		9771EBD92A7EFC2400C581E7 /* ProfilePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9771EBC82A7EFC2400C581E7 /* ProfilePageView.swift */; };
 		9771EBDA2A7EFC2400C581E7 /* TabViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9771EBC92A7EFC2400C581E7 /* TabViewContainer.swift */; };
-		9771EBDB2A7EFC2400C581E7 /* BottomBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9771EBCA2A7EFC2400C581E7 /* BottomBannerView.swift */; };
 		9771EBDD2A7EFC2400C581E7 /* OnboardingFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9771EBCD2A7EFC2400C581E7 /* OnboardingFormView.swift */; };
 		9771EBDE2A7EFC2400C581E7 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9771EBCE2A7EFC2400C581E7 /* UserData.swift */; };
 		9771EBE32A7EFC2400C581E7 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9771EBD32A7EFC2400C581E7 /* OnboardingView.swift */; };
@@ -22,6 +21,7 @@
 		97C5B06B2A80093400AA3D17 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C5B06A2A80093400AA3D17 /* Movie.swift */; };
 		97C5B06D2A80109B00AA3D17 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C5B06C2A80109B00AA3D17 /* User.swift */; };
 		97C5B06F2A80149D00AA3D17 /* STREAK-VIDEO.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 97C5B06E2A8012D300AA3D17 /* STREAK-VIDEO.mp4 */; };
+		97D82B802A81FE5D00AD0732 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D82B7F2A81FE5D00AD0732 /* TimerManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +32,6 @@
 		9771EBC72A7EFC2400C581E7 /* nerve_swift_uiApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nerve_swift_uiApp.swift; sourceTree = "<group>"; };
 		9771EBC82A7EFC2400C581E7 /* ProfilePageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePageView.swift; sourceTree = "<group>"; };
 		9771EBC92A7EFC2400C581E7 /* TabViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewContainer.swift; sourceTree = "<group>"; };
-		9771EBCA2A7EFC2400C581E7 /* BottomBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBannerView.swift; sourceTree = "<group>"; };
 		9771EBCD2A7EFC2400C581E7 /* OnboardingFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingFormView.swift; sourceTree = "<group>"; };
 		9771EBCE2A7EFC2400C581E7 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		9771EBD32A7EFC2400C581E7 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -41,6 +40,7 @@
 		97C5B06A2A80093400AA3D17 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		97C5B06C2A80109B00AA3D17 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		97C5B06E2A8012D300AA3D17 /* STREAK-VIDEO.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "STREAK-VIDEO.mp4"; sourceTree = "<group>"; };
+		97D82B7F2A81FE5D00AD0732 /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,16 +57,16 @@
 		9771EBC12A7EFC2400C581E7 /* nerve-swift-ui */ = {
 			isa = PBXGroup;
 			children = (
+				97D82B7F2A81FE5D00AD0732 /* TimerManager.swift */,
 				9771EBC42A7EFC2400C581E7 /* Assets.xcassets */,
 				97C5B06E2A8012D300AA3D17 /* STREAK-VIDEO.mp4 */,
 				9771EBC52A7EFC2400C581E7 /* Preview Content */,
 				9771EBC72A7EFC2400C581E7 /* nerve_swift_uiApp.swift */,
 				9771EBC32A7EFC2400C581E7 /* LeaderboardView.swift */,
-				97C5B06C2A80109B00AA3D17 /* User.swift */,
 				9771EBC22A7EFC2400C581E7 /* PlayView.swift */,
+				97C5B06C2A80109B00AA3D17 /* User.swift */,
 				9771EBC82A7EFC2400C581E7 /* ProfilePageView.swift */,
 				9771EBC92A7EFC2400C581E7 /* TabViewContainer.swift */,
-				9771EBCA2A7EFC2400C581E7 /* BottomBannerView.swift */,
 				97C5B06A2A80093400AA3D17 /* Movie.swift */,
 				9771EBCB2A7EFC2400C581E7 /* Onboarding */,
 			);
@@ -187,9 +187,9 @@
 				9771EBD92A7EFC2400C581E7 /* ProfilePageView.swift in Sources */,
 				9771EBD42A7EFC2400C581E7 /* PlayView.swift in Sources */,
 				97A9A54B2A80C90400DC6FFA /* ProfilePictureView.swift in Sources */,
+				97D82B802A81FE5D00AD0732 /* TimerManager.swift in Sources */,
 				9771EBD82A7EFC2400C581E7 /* nerve_swift_uiApp.swift in Sources */,
 				9771EBDE2A7EFC2400C581E7 /* UserData.swift in Sources */,
-				9771EBDB2A7EFC2400C581E7 /* BottomBannerView.swift in Sources */,
 				97C5B06B2A80093400AA3D17 /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

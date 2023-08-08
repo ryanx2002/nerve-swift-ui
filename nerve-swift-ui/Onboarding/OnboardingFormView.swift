@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct OnboardingFormView: View {
-
+    
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var navigationModel: NavigationModel
     @EnvironmentObject var userData: UserData
@@ -32,7 +32,7 @@ struct OnboardingFormView: View {
                 .padding(.top, 50)
                 .padding(.bottom, 50)
                 .multilineTextAlignment(.center)
-//                .keyboardType(.phonePad)
+            //                .keyboardType(.phonePad)
             
             Button(action: nextButtonPressed) {
                 Text ("Next")
@@ -67,12 +67,12 @@ struct OnboardingFormView: View {
         .background(Color(UIColor(red: 0.988, green: 0.965, blue: 0.953, alpha: 1)))
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading:
-            Button(action: {
-                self.presentationMode.wrappedValue.dismiss()
-            }) {
-                Image(systemName: "chevron.left")
-                    .foregroundColor(.pink)
-            }
+                                Button(action: {
+            self.presentationMode.wrappedValue.dismiss()
+        }) {
+            Image(systemName: "chevron.left")
+                .foregroundColor(.pink)
+        }
         )
     }
     

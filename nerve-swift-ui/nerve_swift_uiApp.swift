@@ -26,8 +26,6 @@ class NavigationModel: ObservableObject {
 @main
 struct nerve_swift_uiApp: App {
     
-    
-    
     @StateObject var userData = UserData()
     @StateObject var navigationModel = NavigationModel()
     

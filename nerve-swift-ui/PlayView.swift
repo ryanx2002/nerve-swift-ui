@@ -13,27 +13,16 @@ import AVFoundation
 struct PlayView: View {
     
     enum LoadState {
-        case unknown, loading, loaded(Movie), failed
+        case loading, loaded(Movie), failed
     }
-
+    
     @State private var selectedItem: PhotosPickerItem?
-    @State private var loadState = LoadState.unknown
+    @State private var loadState = LoadState.loading
     @EnvironmentObject var navModel: NavigationModel
     @EnvironmentObject var userData: UserData
     @State private var showSecondScreen: Bool = false
-
-    let avPlayer = AVPlayer(url: Movie.defaultPlayViewVideoURL)
     
-    // timer setup
-    @State var timeRemaining = 60000
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    let formatter: DateComponentsFormatter = {
-        let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.hour, .minute, .second]
-        formatter.unitsStyle = .positional
-        formatter.zeroFormattingBehavior = .pad
-        return formatter
-    }()
+    let avPlayer = AVPlayer(url: Movie.defaultPlayViewVideoURL)
     
     var body: some View {
         ScrollView {
@@ -59,19 +48,20 @@ struct PlayView: View {
                         .padding(.horizontal, 5)
                         //                        .alignment(.center)
                         
-                        Text("\(formatter.string(from: TimeInterval(timeRemaining)) ?? "00:00:00")")
-                            .onReceive(timer) { _ in
-                                if timeRemaining > 0 {
-                                    timeRemaining -= 1
-                                }
-                            }
-                            .foregroundColor(.white)
-                            .padding(.bottom, 5)
+                        TimerManager()
+                        
+//                        Text("\(formatter.string(from: TimeInterval(timeRemaining)) ?? "00:00:00")")
+//                            .onReceive(timer) { _ in
+//                                if timeRemaining > 0 {
+//                                    timeRemaining -= 1
+//                                }
+//                            }
+//                            .foregroundColor(.white)
+//                            .padding(.bottom, 5)
                     }
                     .background(Color.black.opacity(0.3))
                     .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    Spacer()
                     Spacer()
                     Spacer()
                     
@@ -121,9 +111,9 @@ struct PlayView: View {
                                     .mask(Rectangle().cornerRadius(10))
                                 }
                             )
-                        .fullScreenCover(isPresented: $showSecondScreen, content: {
-                            SecondScreen()
-                        })
+                            .fullScreenCover(isPresented: $showSecondScreen, content: {
+                                SecondScreen()
+                            })
                     }
                     .border(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)), width: 3)
                     .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 4)
@@ -136,10 +126,8 @@ struct PlayView: View {
             //the uploaded video should appear here
             VStack{
                 switch loadState {
-                case .unknown:
-                    EmptyView()
                 case .loading:
-                    ProgressView()
+                    EmptyView()
                 case .loaded(let movie):
                     VideoPlayer(player: AVPlayer(url: movie.url))
                         .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
@@ -185,7 +173,7 @@ struct PlayView: View {
                 }
             }
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
                 showSecondScreen = true
             }
         }
@@ -205,15 +193,15 @@ struct SecondScreen: View {
                 .ignoresSafeArea()
             
             VStack {
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }, label: {
-                        Image(systemName: "xmark")
-                            .foregroundColor(.white)
-                            .font(.title)
-                            .padding(20)
-                    })
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Image(systemName: "xmark")
+                        .foregroundColor(.white)
+                        .font(.title)
+                        .padding(20)
+                })
+                .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Spacer()
                 Spacer()
@@ -233,7 +221,7 @@ struct SecondScreen: View {
                     .font(.system(size: 12))
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
-
+                
                 Spacer()
                 Spacer()
                 Spacer()

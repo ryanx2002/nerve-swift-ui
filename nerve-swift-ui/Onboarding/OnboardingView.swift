@@ -81,7 +81,7 @@ struct OnboardingView: View {
                             )
                     }
                     .border(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)), width: 2)
-                    .shadow(color: Color.black.opacity(0.25), radius: 5, x: 0, y: 4)
+                    .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 4)
                     
                 }
             }
