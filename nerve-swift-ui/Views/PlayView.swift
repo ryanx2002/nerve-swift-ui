@@ -46,18 +46,7 @@ struct PlayView: View {
                         }
                         .padding(.top, 5)
                         .padding(.horizontal, 5)
-                        //                        .alignment(.center)
-                        
                         TimerManager()
-                        
-//                        Text("\(formatter.string(from: TimeInterval(timeRemaining)) ?? "00:00:00")")
-//                            .onReceive(timer) { _ in
-//                                if timeRemaining > 0 {
-//                                    timeRemaining -= 1
-//                                }
-//                            }
-//                            .foregroundColor(.white)
-//                            .padding(.bottom, 5)
                     }
                     .background(Color.black.opacity(0.3))
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -236,67 +225,3 @@ struct PlayView_Previews: PreviewProvider {
         PlayView()
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-//final class PlayView: NSObject, View {
-//    @State private var videoURL: URL?
-//
-//    var body: some View {
-//        VStack {
-//            Text("Upload Video")
-//                .font(.title)
-//                .padding()
-//
-//            Button(action: {
-//                // Code to open video picker
-//                // This code depends on the platform you're developing for (iOS, macOS, etc.)
-//                // Here's an example for iOS using UIImagePickerController
-//                let picker = UIImagePickerController()
-//                picker.sourceType = .photoLibrary
-//                picker.mediaTypes = ["public.movie"]
-//                picker.delegate = self
-//                if let windowScene = UIApplication.shared.windows.first?.windowScene {
-//                                    windowScene.windows.first?.rootViewController?.present(picker, animated: true, completion: nil)
-//                                }
-//                            })
-//            {
-//                Text("Select Video")
-//                    .font(.headline)
-//                    .foregroundColor(.white)
-//                    .padding()
-//                    .background(Color.blue)
-//                    .cornerRadius(10)
-//            }
-//
-//            if let videoURL = videoURL {
-//                VideoPlayer(player: AVPlayer(url: videoURL))
-//                    .frame(height: 300)
-//                    .padding()
-//            }
-//        }
-//    }
-//}
-//
-//extension PlayView: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//        if let videoURL = info[.mediaURL] as? URL {
-//            self.videoURL = videoURL
-//        }
-//        picker.dismiss(animated: true, completion: nil)
-//    }
-//}
-//
-//struct PlayView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PlayView()
-//    }
-//}

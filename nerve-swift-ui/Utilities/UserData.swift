@@ -21,9 +21,3 @@ class UserData: Identifiable, ObservableObject {
         self.venmo = userDefaults.string(forKey: "venmo") ?? ""
     }
 }
-
-//struct User: Identifiable, Codable {
-//    let id: String
-//    var firstAndLastName: String?
-//    var venmoHandle: String?
-//}

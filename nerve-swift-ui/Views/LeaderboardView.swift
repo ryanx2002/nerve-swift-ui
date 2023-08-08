@@ -24,7 +24,7 @@ struct LeaderboardView: View {
         )
         
         //originally the line below said "var", but xcode said to change it to let
-        let users = User.testUsers + [currentUser]
+        let users = DummyUserData.testUsers + [currentUser]
         
         return users.sorted { $0.ranking < $1.ranking }
     }
@@ -32,11 +32,7 @@ struct LeaderboardView: View {
     var body: some View {
         NavigationStack(path: $navModel.leaderboardPath) {
             if navModel.hasFinishedOnboarding {
-//                    ScrollView{
                 VStack {
-                    
-                    
-                    
                     List{
                         Image("yaleleaderboard")
                             .frame(width: 360, height: 180)
@@ -47,7 +43,6 @@ struct LeaderboardView: View {
                                 if let profilePic = user.profilePic {
                                     Image(uiImage: profilePic)
                                         .resizable()
-//                                      .aspectRatio(contentMode: .fit)
                                         .background(Color.white)
                                         .frame(width: 40, height: 40)
                                         .cornerRadius(20)
@@ -66,19 +61,7 @@ struct LeaderboardView: View {
                         }
                     }
                     .listStyle(PlainListStyle())
-                    
-                    
-                    //                    Button(action: playButtonPressed) {
-                    //                        Text("This is part of the leaderboard screen, not tab bar")
-                    //                            .foregroundColor(.black)
-                    //                    }
-                    //                    .navigationDestination(for: String.self) {viewText in
-                    //                        Text(viewText)
-                    //                    }
-                    
                 }
-//                    .edgesIgnoringSafeArea(.all)
-                
                 .navigationTitle("Yale Leaderboard")
                 .addProfileToolbar(pressedHandler: profilePressed)
                 .foregroundColor(.black)
@@ -111,11 +94,6 @@ struct LeaderboardView: View {
     func profilePressed() {
         navModel.leaderboardPath.append(Screen.profile)
     }
-    
-    //    func playButtonPressed () {
-    //        navPath.append("random words")
-    //    }
-    
 }
 
 extension String: Identifiable {
@@ -129,38 +107,3 @@ struct LeaderboardView_Previews: PreviewProvider {
         LeaderboardView().environmentObject(NavigationModel())
     }
 }
-
-
-
-//HStack {
-//    Spacer()
-//    Image(systemName: "building.2")
-//    Image(systemName: "globe")
-//}
-
-
-
-//                .toolbar {
-//                    Button(action: profilePressed) {
-//                        Image(systemName: "person")
-//                            .background(Color.gray)
-//                            .cornerRadius(20)
-//                            .frame(width: 40, height: 40)
-//                    }
-//                }
-
-
-
-//                    Button(action: {
-//                        currentPage = "Profile"
-//                    }) {
-//                        Image(systemName: "person")
-//                            .background(Color.gray)
-//                            .cornerRadius(20)
-//                            .frame(width: 40, height: 40)
-//                    }
-//                    .fullScreenCover(item: $currentPage) { page in
-//                        if page == "Profile" {
-//                            ProfilePageView()
-//                        }
-//                    }
