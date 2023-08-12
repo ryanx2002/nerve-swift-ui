@@ -15,7 +15,7 @@ func saveImage(image: UIImage) {
         return
     }
     do {
-        try data.write(to: directory.appendingPathComponent("profile.jpeg")!)
+        try data.write(to: directory.appendingPathComponent("profile.jpg")!)
         return
     } catch {
         print(error.localizedDescription)
