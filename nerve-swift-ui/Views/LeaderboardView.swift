@@ -34,9 +34,55 @@ struct LeaderboardView: View {
             if navModel.hasFinishedOnboarding {
                 VStack {
                     List{
-                        Image("yaleleaderboard")
-                            .frame(width: 360, height: 180)
-                            .padding(.top, 75)
+                        HStack (alignment: .bottom){
+                            Spacer()
+                            VStack {
+                                ZStack (alignment: .bottom){
+                                    Image("money")
+                                        .resizable()
+                                        .frame(width: 50, height: 50)
+                                    Text("$5,000")
+                                        .bold()
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 15))
+                                        .padding(.bottom, 5)
+                                }
+                                ZStack (alignment: .bottom) {
+                                    Rectangle()
+                                        .fill(Color(UIColor(red: 0.753, green: 0.753, blue: 0.753, alpha: 1)))
+                                        .frame(width: 70, height: 80)
+                                    VStack {
+                                        Text("2nd")
+                                            .bold()
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 20))
+                                        Text("Prize")
+                                            .bold()
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 12))
+                                            .padding(.bottom, 20)
+                                    }
+                                }
+                            }
+                            ZStack (alignment: .bottom){
+                                Rectangle()
+                                    .fill(Color(UIColor(red: 0.906, green: 0.737, blue: 0.333, alpha: 1)))
+                                    .frame(width: 70, height: 120)
+                                Text(String("1st\nPrize"))
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 20))
+                            }
+                            ZStack (alignment: .bottom){
+                                Rectangle()
+                                    .fill(Color(UIColor(red: 0.725, green: 0.447, blue: 0.176, alpha: 1)))
+                                    .frame(width: 70, height: 40)
+                                Text(String("3rd\nPrize"))
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 20))
+                            }
+                            Spacer()
+                        }
+                        
                         ForEach(users){ user in
                             HStack{
                                 Text(String("#\(user.ranking)"))
@@ -77,7 +123,7 @@ struct LeaderboardView: View {
                     }
                     .listStyle(PlainListStyle())
                 }
-                .navigationTitle("Yale Leaderboard")
+                .navigationTitle("Leaderboard")
                 .addProfileToolbar(pressedHandler: profilePressed)
                 .foregroundColor(.black)
                 .navigationDestination(for: Screen.self) { screen in
@@ -105,6 +151,7 @@ struct LeaderboardView: View {
             }
         }
     }
+    
     
     func profilePressed() {
         navModel.leaderboardPath.append(Screen.profile)
