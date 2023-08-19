@@ -22,6 +22,18 @@ struct PlayView: View {
     @EnvironmentObject var userData: UserData
     @State private var showSecondScreen: Bool = false
     
+    @State private var animate = false
+    @State private var likeAnimation = false
+    @State private var isLiked = false
+    private var duration: Double = 0.1
+
+    
+    func performAnimation() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500)) {
+            likeAnimation = false
+        }
+    }
+    
     let avPlayer = AVPlayer(url: Movie.defaultPlayViewVideoURL)
     
     var body: some View {
@@ -94,14 +106,36 @@ struct PlayView: View {
                     case .loaded(let movie):
                         Text("asdf")
                             .foregroundColor(.blue)
-                        VideoPlayer(player: AVPlayer(url: movie.url))
-                            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-                            .onTapGesture (count: 2) {
-                                <#code#>
-                            }
+                        ZStack (alignment: .center){
+                            VideoPlayer(player: AVPlayer(url: movie.url))
+                                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                                .onTapGesture (count: 2) {
+                                    likeAnimation = true
+                                    performAnimation()
+                                    self.isLiked.toggle()
+                                }
+                            Image(systemName: isLiked ? "heart.fill" : "heart")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 150, height: 150)
+                                .scaleEffect(likeAnimation ? 1 : 0)
+                                .opacity(likeAnimation ? 1 : 0)
+                                .animation(.spring())
+                                .foregroundColor(isLiked ? .red : .black)
+                        }
                         HStack {
-                            Image(systemName: "heart")
+                            Button (action: {
+                                self.animate = true
+                                DispatchQueue.main.asyncAfter(deadline: .now() + self.duration, execute: {
+                                    self.animate = false
+                                    self.isLiked.toggle()
+                                })
+                            }) {
+                                Image(systemName: isLiked ? "heart.fill" : "heart")
+                                    .foregroundColor(isLiked ? .red : .black)
+                            }
                                 .padding(.leading, 10)
+                                .animation(.easeIn (duration: duration))
                             Image(systemName: "bubble.right")
                             Spacer()
                         }
