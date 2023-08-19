@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Amplify
 
 struct OnboardingFormView: View {
     
@@ -33,9 +34,16 @@ struct OnboardingFormView: View {
                 .padding(.top, 50)
                 .padding(.bottom, 50)
                 .multilineTextAlignment(.center)
-            //                .keyboardType(.phonePad)
+                .disableAutocorrection(true)
+                .textContentType(screen.textType)
+                .autocapitalization(.none)
+                .keyboardType(screen.keyboardType)
+                .foregroundColor(.white)
+                .glowBorder(color: Color(nervePink), lineWidth: 2)
+                .font(.system(size: 26))
+                .shadow(color: Color(nervePink).opacity(0.5), radius: 5)
             
-            Button(action: nextButtonPressed) {
+            Button { Task { await nextButtonPressed() }} label: {
                 Text ("Next")
                     .font(.system(size: 26))
                     .foregroundColor(.white)
@@ -72,8 +80,67 @@ struct OnboardingFormView: View {
         )
     }
     
-    func nextButtonPressed () {
-        navigationModel.leaderboardPath.append(screen.next!)
+    func nextButtonPressed () async {
+        switch screen {
+        case .password:
+            let userAttributes = [AuthUserAttribute(.email, value: userData.email)]
+            let options = AuthSignUpRequest.Options(userAttributes: userAttributes)
+            do {
+                    let signUpResult = try await Amplify.Auth.signUp(
+                        username: userData.email,
+                        password: userData.password,
+                        options: options
+                    )
+                    if case let .confirmUser(deliveryDetails, _, userId) = signUpResult.nextStep {
+                        print("Delivery details \(String(describing: deliveryDetails)) for userId: \(String(describing: userId))")
+                    } else {
+                        print("SignUp Complete")
+                    }
+                    navigationModel.leaderboardPath.append(screen.next!)
+                } catch let error as AuthError {
+                    print("An error occurred while registering a user \(error)")
+                    do {
+                            let signInResult = try await Amplify.Auth.signIn(
+                                username: userData.email,
+                                password: userData.password
+                                )
+                            print(signInResult)
+                            if signInResult.isSignedIn {
+                                print("Sign in succeeded")
+                            }
+                        
+                        let defaults = UserDefaults.standard
+                        defaults.set(true, forKey: "hasFinishedOnboarding")
+                        
+                        navigationModel.leaderboardPath.removeLast(navigationModel.leaderboardPath.count)
+                        navigationModel.isOnboarding = false
+                        navigationModel.hasFinishedOnboarding = true
+                        
+                        
+                        } catch let error as AuthError {
+                            print("Sign in failed \(error)")
+                        } catch {
+                            print("Unexpected error: \(error)")
+                        }
+                } catch {
+                    print("Unexpected error: \(error)")
+                }
+        case .confirmationCode:
+            do {
+                   let confirmSignUpResult = try await Amplify.Auth.confirmSignUp(
+                       for: userData.email,
+                       confirmationCode: userData.confirmationCode
+                   )
+                   print("Confirm sign up result completed: \(confirmSignUpResult.isSignUpComplete)")
+                    navigationModel.leaderboardPath.append(screen.next!)
+               } catch let error as AuthError {
+                   print("An error occurred while confirming sign up \(error)")
+               } catch {
+                   print("Unexpected error: \(error)")
+               }
+        default:
+            navigationModel.leaderboardPath.append(screen.next!)
+        }
     }
     
     func binding() -> Binding<String> {
@@ -83,8 +150,14 @@ struct OnboardingFormView: View {
             return $userData.name
         case .phoneNumber:
             return $userData.phoneNumber
+        case .email:
+            return $userData.email
+        case .password:
+            return $userData.password
         case .venmo:
             return $userData.venmo
+        case .confirmationCode:
+            return $userData.confirmationCode
         default: return Binding(get: { "empty" }, set: { _ in })
         }
     }

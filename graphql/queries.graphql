@@ -1,0 +1,183 @@
+# this is an auto generated file. This will be overwritten
+
+query GetDare($id: ID!) {
+  getDare(id: $id) {
+    id
+    title
+    description
+    videos {
+      items {
+        id
+        viewCount
+        videoURL
+        createdAt
+        updatedAt
+        dareVideosId
+        userVideosId
+        owner
+        __typename
+      }
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+query ListDares(
+  $filter: ModelDareFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listDares(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      title
+      description
+      videos {
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+
+query GetUser($id: ID!) {
+  getUser(id: $id) {
+    id
+    name
+    phoneNumber
+    venmo
+    videos {
+      items {
+        id
+        viewCount
+        videoURL
+        createdAt
+        updatedAt
+        dareVideosId
+        userVideosId
+        owner
+        __typename
+      }
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    owner
+    __typename
+  }
+}
+
+query ListUsers(
+  $filter: ModelUserFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      phoneNumber
+      venmo
+      videos {
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+
+query GetVideo($id: ID!) {
+  getVideo(id: $id) {
+    id
+    viewCount
+    videoURL
+    dare {
+      id
+      title
+      description
+      videos {
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+    user {
+      id
+      name
+      phoneNumber
+      venmo
+      videos {
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+    createdAt
+    updatedAt
+    dareVideosId
+    userVideosId
+    owner
+    __typename
+  }
+}
+
+query ListVideos(
+  $filter: ModelVideoFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listVideos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      viewCount
+      videoURL
+      dare {
+        id
+        title
+        description
+        createdAt
+        updatedAt
+        __typename
+      }
+      user {
+        id
+        name
+        phoneNumber
+        venmo
+        createdAt
+        updatedAt
+        owner
+        __typename
+      }
+      createdAt
+      updatedAt
+      dareVideosId
+      userVideosId
+      owner
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}

@@ -10,14 +10,16 @@ import SwiftUI
 struct TabViewContainer: View {
     
     @EnvironmentObject var navModel: NavigationModel
+    @State private var selection = 2
     
     var body: some View {
-        TabView {
+        TabView (selection: $selection){
                     
             PlayView()
                 .tabItem {
                     Image (systemName: "gamecontroller.fill")
                 }
+                .tag(1)
 
             Spacer()
             
@@ -25,6 +27,7 @@ struct TabViewContainer: View {
                 .tabItem {
                     Image ("leaderboardbanner")
                 }
+                .tag(2)
             
             Spacer()
         }

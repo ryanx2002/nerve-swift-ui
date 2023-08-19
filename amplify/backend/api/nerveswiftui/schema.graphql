@@ -1,0 +1,26 @@
+type Dare @model
+@auth(rules: [{allow: private, operations: [read]}]) {
+	id: ID!
+	title: String!
+	description: String
+	videos: [Video] @hasMany
+}
+
+type User @model
+@auth(rules: [{allow: owner}, {allow: private, operations: [read]}]) {
+	id: ID!
+	name: String!
+	phoneNumber: AWSPhone
+	venmo: String
+	videos: [Video] @hasMany
+	email: AWSEmail!
+}
+
+type Video @model
+@auth(rules: [{allow: owner}, {allow: private, operations: [read]}]) {
+	id: ID!
+	viewCount: Int
+	videoURL: AWSURL!
+	dare: Dare @belongsTo
+	user: User @belongsTo
+}

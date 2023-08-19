@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-nerveswiftui-dev-135156-authRole",
+      "UnauthRoleArn": "arn:aws:iam::450904514466:role/amplify-nerveswiftui-dev-135156-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::450904514466:role/amplify-nerveswiftui-dev-135156-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-nerveswiftui-dev-135156-deployment",
+      "UnauthRoleName": "amplify-nerveswiftui-dev-135156-unauthRole",
+      "StackName": "amplify-nerveswiftui-dev-135156",
+      "StackId": "arn:aws:cloudformation:us-east-1:450904514466:stack/amplify-nerveswiftui-dev-135156/17e26950-3eb9-11ee-88e8-12f23567f153",
+      "AmplifyAppId": "dh9j712riccd1"
+    },
+    "categories": {
+      "auth": {
+        "nerveswiftuia019ef1ba019ef1b": {}
+      },
+      "api": {
+        "nerveswiftui": {}
+      }
+    }
+  }
+}

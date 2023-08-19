@@ -6,6 +6,21 @@
 //
 
 import SwiftUI
+import Amplify
+
+func fetchCurrentAuthSession() async -> Bool {
+    do {
+        let session = try await Amplify.Auth.fetchAuthSession()
+        print("Is user signed in - \(session.isSignedIn)")
+        return session.isSignedIn
+    } catch let error as AuthError {
+        print("Fetch session failed with error \(error)")
+        return false
+    } catch {
+        print("Unexpected error: \(error)")
+        return false
+    }
+}
 
 struct LeaderboardView: View {
     
@@ -13,9 +28,9 @@ struct LeaderboardView: View {
     @EnvironmentObject var navModel: NavigationModel
     @EnvironmentObject var userData: UserData
     
-    private var users: [User] {
+    private var users: [LocalUser] {
         
-        let currentUser = User(
+        let currentUser = LocalUser(
             id: UUID(),
             name: userData.name,
             ranking: Int.random(in: 6...6),
@@ -30,15 +45,16 @@ struct LeaderboardView: View {
         return users.sorted { $0.ranking < $1.ranking }
     }
     
-    init() {
+    init()  {
       let navBarAppearance = UINavigationBar.appearance()
       navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
       navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        
     }
     
     var body: some View {
         NavigationStack(path: $navModel.leaderboardPath) {
-            //if navModel.hasFinishedOnboarding {
+            if navModel.hasFinishedOnboarding {
                 VStack {
                     List{
                         Image("prizes")
@@ -122,12 +138,12 @@ struct LeaderboardView: View {
                     }
                 }
                 
-            /*}
+            }
             else
             {
                 Color.white
                     .onAppear {
-                        var transaction = Transaction()
+                        let transaction = Transaction()
                         withTransaction(transaction) {
                             navModel.isOnboarding = true
                         }
@@ -136,7 +152,7 @@ struct LeaderboardView: View {
                         OnboardingView()
                     }
                 
-            }*/
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.black)

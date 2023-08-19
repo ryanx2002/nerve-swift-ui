@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Amplify
 
 func saveImage(image: UIImage) {
     guard let data = image.jpegData(compressionQuality: 1) else {
@@ -75,7 +76,7 @@ struct ProfilePictureView: View {
                 .padding(.bottom, 50)
             }
                         
-            Button (action: finishButtonPressed) {
+            Button { Task{ await finishButtonPressed()}} label: {
                 Text ("Finish")
                     .font(.system(size: 26))
                     .foregroundColor(.white)
@@ -122,7 +123,7 @@ struct ProfilePictureView: View {
         }
     }
     
-    func finishButtonPressed () {
+    func finishButtonPressed () async {
         
         if (image != nil) {
             saveImage(image: image!)
@@ -130,15 +131,24 @@ struct ProfilePictureView: View {
         
         let defaults = UserDefaults.standard
         defaults.set(userData.name, forKey: "name")
+        defaults.set(userData.email, forKey: "email")
         defaults.set(userData.phoneNumber, forKey: "phoneNumber")
         defaults.set(userData.venmo, forKey: "venmo")
         defaults.set(true, forKey: "onboardingCompleted")
-        
-//        navModel.leaderboardPath.append(Screen.leaderboard)
-        navModel.leaderboardPath.removeLast(navModel.leaderboardPath.count)
-        navModel.isOnboarding = false
-        navModel.hasFinishedOnboarding = true
         defaults.set(true, forKey: "hasFinishedOnboarding")
+        
+        do{
+            let item = User(name: userData.name,
+                            venmo: userData.venmo, email: userData.email)
+            let savedItem = try await Amplify.DataStore.save(item)
+            print("Saved item: \(savedItem.name)")
+            navModel.leaderboardPath.removeLast(navModel.leaderboardPath.count)
+            navModel.isOnboarding = false
+            navModel.hasFinishedOnboarding = true
+        } catch {
+            print("Could not save item to DataStore: \(error)")
+        }
+        
     }
 }
 

@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B615B88F469F9CA21F1A863 /* User+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04B75833122713E6786D1BD /* User+Schema.swift */; };
+		1D429C376969B9D16A9BA755 /* Dare+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA1715479250D271E3FA1E3 /* Dare+Schema.swift */; };
+		2436D18C2E61078EACEBCE76 /* Dare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DF9FD1B882121ED2E5A577 /* Dare.swift */; };
+		365B3A2524E4787528131164 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 597094B06E44E9A88EA9D946 /* awsconfiguration.json */; };
+		52F67F2B463B8E4FEA1C3120 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5A4DD26C33A1BE2C392B2 /* User.swift */; };
+		5313F1BCF84101E0D2367258 /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE157D7C4403869391C0886 /* AmplifyModels.swift */; };
+		5FC364C9BBC25AEB9BE8B496 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 28A010788981F32A2C82F69A /* amplifyconfiguration.json */; };
+		688CB51058E5C3CFD1C88E40 /* Video+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543C88AE45302641F1D30845 /* Video+Schema.swift */; };
+		9299146E66A031EF17E33DB1 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91368F14BD9121D0987C8532 /* Video.swift */; };
 		9771EBD42A7EFC2400C581E7 /* PlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9771EBC22A7EFC2400C581E7 /* PlayView.swift */; };
 		9771EBD52A7EFC2400C581E7 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9771EBC32A7EFC2400C581E7 /* LeaderboardView.swift */; };
 		9771EBD62A7EFC2400C581E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9771EBC42A7EFC2400C581E7 /* Assets.xcassets */; };
@@ -19,13 +28,25 @@
 		97A9A54B2A80C90400DC6FFA /* OnboardingPic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A9A54A2A80C90400DC6FFA /* OnboardingPic.swift */; };
 		97AB687E2A90A4620002E1BC /* GlowBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AB687D2A90A4620002E1BC /* GlowBorder.swift */; };
 		97C5B06B2A80093400AA3D17 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C5B06A2A80093400AA3D17 /* Movie.swift */; };
-		97C5B06D2A80109B00AA3D17 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C5B06C2A80109B00AA3D17 /* User.swift */; };
+		97C5B06D2A80109B00AA3D17 /* LocalUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C5B06C2A80109B00AA3D17 /* LocalUser.swift */; };
 		97C5B06F2A80149D00AA3D17 /* STREAK-VIDEO.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 97C5B06E2A8012D300AA3D17 /* STREAK-VIDEO.mp4 */; };
 		97D82B802A81FE5D00AD0732 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D82B7F2A81FE5D00AD0732 /* TimerManager.swift */; };
 		97D82B842A821AED00AD0732 /* DummyUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D82B832A821AED00AD0732 /* DummyUserData.swift */; };
+		CFAFB75F2A9138ED00FEBDB2 /* AWSAPIPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = CFAFB75E2A9138ED00FEBDB2 /* AWSAPIPlugin */; };
+		CFAFB7612A9138ED00FEBDB2 /* AWSCognitoAuthPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = CFAFB7602A9138ED00FEBDB2 /* AWSCognitoAuthPlugin */; };
+		CFAFB7632A9138ED00FEBDB2 /* AWSDataStorePlugin in Frameworks */ = {isa = PBXBuildFile; productRef = CFAFB7622A9138ED00FEBDB2 /* AWSDataStorePlugin */; };
+		CFAFB7652A9138ED00FEBDB2 /* AWSS3StoragePlugin in Frameworks */ = {isa = PBXBuildFile; productRef = CFAFB7642A9138ED00FEBDB2 /* AWSS3StoragePlugin */; };
+		CFAFB7672A9138ED00FEBDB2 /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = CFAFB7662A9138ED00FEBDB2 /* Amplify */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1BA1715479250D271E3FA1E3 /* Dare+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "Dare+Schema.swift"; path = "amplify/generated/models/Dare+Schema.swift"; sourceTree = "<group>"; };
+		28A010788981F32A2C82F69A /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
+		543C88AE45302641F1D30845 /* Video+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "Video+Schema.swift"; path = "amplify/generated/models/Video+Schema.swift"; sourceTree = "<group>"; };
+		597094B06E44E9A88EA9D946 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
+		61DF9FD1B882121ED2E5A577 /* Dare.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Dare.swift; path = amplify/generated/models/Dare.swift; sourceTree = "<group>"; };
+		8FE157D7C4403869391C0886 /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = AmplifyModels.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
+		91368F14BD9121D0987C8532 /* Video.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Video.swift; path = amplify/generated/models/Video.swift; sourceTree = "<group>"; };
 		9771EBC22A7EFC2400C581E7 /* PlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayView.swift; sourceTree = "<group>"; };
 		9771EBC32A7EFC2400C581E7 /* LeaderboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		9771EBC42A7EFC2400C581E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -39,10 +60,12 @@
 		97A9A54A2A80C90400DC6FFA /* OnboardingPic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPic.swift; sourceTree = "<group>"; };
 		97AB687D2A90A4620002E1BC /* GlowBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlowBorder.swift; sourceTree = "<group>"; };
 		97C5B06A2A80093400AA3D17 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
-		97C5B06C2A80109B00AA3D17 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		97C5B06C2A80109B00AA3D17 /* LocalUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUser.swift; sourceTree = "<group>"; };
 		97C5B06E2A8012D300AA3D17 /* STREAK-VIDEO.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "STREAK-VIDEO.mp4"; sourceTree = "<group>"; };
 		97D82B7F2A81FE5D00AD0732 /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		97D82B832A821AED00AD0732 /* DummyUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyUserData.swift; sourceTree = "<group>"; };
+		ABD5A4DD26C33A1BE2C392B2 /* User.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = User.swift; path = amplify/generated/models/User.swift; sourceTree = "<group>"; };
+		E04B75833122713E6786D1BD /* User+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "User+Schema.swift"; path = "amplify/generated/models/User+Schema.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,12 +73,40 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFAFB7632A9138ED00FEBDB2 /* AWSDataStorePlugin in Frameworks */,
+				CFAFB7672A9138ED00FEBDB2 /* Amplify in Frameworks */,
+				CFAFB75F2A9138ED00FEBDB2 /* AWSAPIPlugin in Frameworks */,
+				CFAFB7612A9138ED00FEBDB2 /* AWSCognitoAuthPlugin in Frameworks */,
+				CFAFB7652A9138ED00FEBDB2 /* AWSS3StoragePlugin in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		58DAD0B04416C612BB2F6793 /* AmplifyConfig */ = {
+			isa = PBXGroup;
+			children = (
+				597094B06E44E9A88EA9D946 /* awsconfiguration.json */,
+				28A010788981F32A2C82F69A /* amplifyconfiguration.json */,
+			);
+			name = AmplifyConfig;
+			sourceTree = "<group>";
+		};
+		6A35FC08D97643D20FF1E579 /* AmplifyModels */ = {
+			isa = PBXGroup;
+			children = (
+				8FE157D7C4403869391C0886 /* AmplifyModels.swift */,
+				1BA1715479250D271E3FA1E3 /* Dare+Schema.swift */,
+				61DF9FD1B882121ED2E5A577 /* Dare.swift */,
+				E04B75833122713E6786D1BD /* User+Schema.swift */,
+				ABD5A4DD26C33A1BE2C392B2 /* User.swift */,
+				543C88AE45302641F1D30845 /* Video+Schema.swift */,
+				91368F14BD9121D0987C8532 /* Video.swift */,
+			);
+			name = AmplifyModels;
+			sourceTree = "<group>";
+		};
 		9771EBC12A7EFC2400C581E7 /* nerve-swift-ui */ = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +132,8 @@
 			children = (
 				9771EBC12A7EFC2400C581E7 /* nerve-swift-ui */,
 				977DAE282A780BCF00CC6FD2 /* Products */,
+				58DAD0B04416C612BB2F6793 /* AmplifyConfig */,
+				6A35FC08D97643D20FF1E579 /* AmplifyModels */,
 			);
 			sourceTree = "<group>";
 		};
@@ -119,7 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				9771EBCE2A7EFC2400C581E7 /* UserData.swift */,
-				97C5B06C2A80109B00AA3D17 /* User.swift */,
+				97C5B06C2A80109B00AA3D17 /* LocalUser.swift */,
 				97C5B06A2A80093400AA3D17 /* Movie.swift */,
 				97D82B832A821AED00AD0732 /* DummyUserData.swift */,
 			);
@@ -151,6 +204,13 @@
 			dependencies = (
 			);
 			name = "nerve swift ui";
+			packageProductDependencies = (
+				CFAFB75E2A9138ED00FEBDB2 /* AWSAPIPlugin */,
+				CFAFB7602A9138ED00FEBDB2 /* AWSCognitoAuthPlugin */,
+				CFAFB7622A9138ED00FEBDB2 /* AWSDataStorePlugin */,
+				CFAFB7642A9138ED00FEBDB2 /* AWSS3StoragePlugin */,
+				CFAFB7662A9138ED00FEBDB2 /* Amplify */,
+			);
 			productName = "nerve swift ui";
 			productReference = 977DAE272A780BCF00CC6FD2 /* nerve swift ui.app */;
 			productType = "com.apple.product-type.application";
@@ -179,6 +239,9 @@
 				Base,
 			);
 			mainGroup = 977DAE1E2A780BCF00CC6FD2;
+			packageReferences = (
+				CFAFB75D2A9138ED00FEBDB2 /* XCRemoteSwiftPackageReference "amplify-swift" */,
+			);
 			productRefGroup = 977DAE282A780BCF00CC6FD2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -195,6 +258,8 @@
 			files = (
 				97C5B06F2A80149D00AA3D17 /* STREAK-VIDEO.mp4 in Resources */,
 				9771EBD62A7EFC2400C581E7 /* Assets.xcassets in Resources */,
+				365B3A2524E4787528131164 /* awsconfiguration.json in Resources */,
+				5FC364C9BBC25AEB9BE8B496 /* amplifyconfiguration.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,7 +274,7 @@
 				9771EBE32A7EFC2400C581E7 /* Welcome.swift in Sources */,
 				9771EBDA2A7EFC2400C581E7 /* TabViewContainer.swift in Sources */,
 				9771EBD52A7EFC2400C581E7 /* LeaderboardView.swift in Sources */,
-				97C5B06D2A80109B00AA3D17 /* User.swift in Sources */,
+				97C5B06D2A80109B00AA3D17 /* LocalUser.swift in Sources */,
 				97D82B842A821AED00AD0732 /* DummyUserData.swift in Sources */,
 				97AB687E2A90A4620002E1BC /* GlowBorder.swift in Sources */,
 				9771EBD92A7EFC2400C581E7 /* ProfilePageView.swift in Sources */,
@@ -219,6 +284,13 @@
 				9771EBD82A7EFC2400C581E7 /* App.swift in Sources */,
 				9771EBDE2A7EFC2400C581E7 /* UserData.swift in Sources */,
 				97C5B06B2A80093400AA3D17 /* Movie.swift in Sources */,
+				5313F1BCF84101E0D2367258 /* AmplifyModels.swift in Sources */,
+				1D429C376969B9D16A9BA755 /* Dare+Schema.swift in Sources */,
+				2436D18C2E61078EACEBCE76 /* Dare.swift in Sources */,
+				1B615B88F469F9CA21F1A863 /* User+Schema.swift in Sources */,
+				52F67F2B463B8E4FEA1C3120 /* User.swift in Sources */,
+				688CB51058E5C3CFD1C88E40 /* Video+Schema.swift in Sources */,
+				9299146E66A031EF17E33DB1 /* Video.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,8 +425,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -362,9 +434,12 @@
 				MARKETING_VERSION = 0.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nerveswiftui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -382,8 +457,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -391,9 +466,12 @@
 				MARKETING_VERSION = 0.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nerveswiftui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -419,6 +497,45 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CFAFB75D2A9138ED00FEBDB2 /* XCRemoteSwiftPackageReference "amplify-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aws-amplify/amplify-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CFAFB75E2A9138ED00FEBDB2 /* AWSAPIPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFAFB75D2A9138ED00FEBDB2 /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			productName = AWSAPIPlugin;
+		};
+		CFAFB7602A9138ED00FEBDB2 /* AWSCognitoAuthPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFAFB75D2A9138ED00FEBDB2 /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			productName = AWSCognitoAuthPlugin;
+		};
+		CFAFB7622A9138ED00FEBDB2 /* AWSDataStorePlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFAFB75D2A9138ED00FEBDB2 /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			productName = AWSDataStorePlugin;
+		};
+		CFAFB7642A9138ED00FEBDB2 /* AWSS3StoragePlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFAFB75D2A9138ED00FEBDB2 /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			productName = AWSS3StoragePlugin;
+		};
+		CFAFB7662A9138ED00FEBDB2 /* Amplify */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFAFB75D2A9138ED00FEBDB2 /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			productName = Amplify;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 977DAE1F2A780BCF00CC6FD2 /* Project object */;
 }

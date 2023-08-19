@@ -1,0 +1,301 @@
+# this is an auto generated file. This will be overwritten
+
+subscription OnCreateDare($filter: ModelSubscriptionDareFilterInput) {
+  onCreateDare(filter: $filter) {
+    id
+    title
+    description
+    videos {
+      items {
+        id
+        viewCount
+        videoURL
+        createdAt
+        updatedAt
+        dareVideosId
+        userVideosId
+        owner
+        __typename
+      }
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+subscription OnUpdateDare($filter: ModelSubscriptionDareFilterInput) {
+  onUpdateDare(filter: $filter) {
+    id
+    title
+    description
+    videos {
+      items {
+        id
+        viewCount
+        videoURL
+        createdAt
+        updatedAt
+        dareVideosId
+        userVideosId
+        owner
+        __typename
+      }
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+subscription OnDeleteDare($filter: ModelSubscriptionDareFilterInput) {
+  onDeleteDare(filter: $filter) {
+    id
+    title
+    description
+    videos {
+      items {
+        id
+        viewCount
+        videoURL
+        createdAt
+        updatedAt
+        dareVideosId
+        userVideosId
+        owner
+        __typename
+      }
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+subscription OnCreateUser(
+  $filter: ModelSubscriptionUserFilterInput
+  $owner: String
+) {
+  onCreateUser(filter: $filter, owner: $owner) {
+    id
+    name
+    phoneNumber
+    venmo
+    videos {
+      items {
+        id
+        viewCount
+        videoURL
+        createdAt
+        updatedAt
+        dareVideosId
+        userVideosId
+        owner
+        __typename
+      }
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    owner
+    __typename
+  }
+}
+
+subscription OnUpdateUser(
+  $filter: ModelSubscriptionUserFilterInput
+  $owner: String
+) {
+  onUpdateUser(filter: $filter, owner: $owner) {
+    id
+    name
+    phoneNumber
+    venmo
+    videos {
+      items {
+        id
+        viewCount
+        videoURL
+        createdAt
+        updatedAt
+        dareVideosId
+        userVideosId
+        owner
+        __typename
+      }
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    owner
+    __typename
+  }
+}
+
+subscription OnDeleteUser(
+  $filter: ModelSubscriptionUserFilterInput
+  $owner: String
+) {
+  onDeleteUser(filter: $filter, owner: $owner) {
+    id
+    name
+    phoneNumber
+    venmo
+    videos {
+      items {
+        id
+        viewCount
+        videoURL
+        createdAt
+        updatedAt
+        dareVideosId
+        userVideosId
+        owner
+        __typename
+      }
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    owner
+    __typename
+  }
+}
+
+subscription OnCreateVideo(
+  $filter: ModelSubscriptionVideoFilterInput
+  $owner: String
+) {
+  onCreateVideo(filter: $filter, owner: $owner) {
+    id
+    viewCount
+    videoURL
+    dare {
+      id
+      title
+      description
+      videos {
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+    user {
+      id
+      name
+      phoneNumber
+      venmo
+      videos {
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+    createdAt
+    updatedAt
+    dareVideosId
+    userVideosId
+    owner
+    __typename
+  }
+}
+
+subscription OnUpdateVideo(
+  $filter: ModelSubscriptionVideoFilterInput
+  $owner: String
+) {
+  onUpdateVideo(filter: $filter, owner: $owner) {
+    id
+    viewCount
+    videoURL
+    dare {
+      id
+      title
+      description
+      videos {
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+    user {
+      id
+      name
+      phoneNumber
+      venmo
+      videos {
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+    createdAt
+    updatedAt
+    dareVideosId
+    userVideosId
+    owner
+    __typename
+  }
+}
+
+subscription OnDeleteVideo(
+  $filter: ModelSubscriptionVideoFilterInput
+  $owner: String
+) {
+  onDeleteVideo(filter: $filter, owner: $owner) {
+    id
+    viewCount
+    videoURL
+    dare {
+      id
+      title
+      description
+      videos {
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+    user {
+      id
+      name
+      phoneNumber
+      venmo
+      videos {
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+    createdAt
+    updatedAt
+    dareVideosId
+    userVideosId
+    owner
+    __typename
+  }
+}

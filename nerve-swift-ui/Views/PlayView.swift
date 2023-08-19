@@ -108,12 +108,29 @@ struct PlayView: View {
                         EmptyView()
                     case .loaded(let movie):
                         HStack{
-                            Text("#asdf")
-                                .foregroundColor(.blue)
+                            Text("#\(userData.ranking)")
+                                .foregroundColor(.white)
+                                .bold()
                                 .padding(.leading, 10)
+                            Image(uiImage: getSavedImage(named: "profile.jpg") ?? UIImage(systemName: "person.crop.circle")!)
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .clipShape(Circle())
+                            
+                            Text("\(userData.name)")
+                                .foregroundColor(.white)
+                                .bold()
+                            switch userData.change {
+                                case "up":
+                                    Image("up")
+                                case "down":
+                                    Image("down")
+                                default :
+                                    Image("same")
+                            }
                             Spacer()
                             Image(systemName: "ellipsis")
-                                .foregroundColor(.blue)
+                                .foregroundColor(.white)
                                 .padding(.trailing, 10)
                         }
                         ZStack (alignment: .center){
@@ -142,21 +159,28 @@ struct PlayView: View {
                                 })
                             }) {
                                 Image(systemName: isLiked ? "heart.fill" : "heart")
-                                    .foregroundColor(isLiked ? .red : .black)
+                                    .foregroundColor(isLiked ? .red : .white)
                                     .frame(width: 18, height: 18)
                             }
                                 .padding(.leading, 10)
                                 .animation(.easeIn (duration: duration))
                             Image(systemName: "bubble.right")
-                                .resizable()
+                                .foregroundColor(.white)
                                 .frame(width: 18, height: 18)
                             Spacer()
+                            Text("0")
+                                .foregroundColor(Color.white)
+                            Image(systemName: "eye")
+                                .foregroundColor(Color.white)
+                                .scaleEffect(0.7)
+                                .padding(.trailing, 10)
                         }
                     case .failed:
                         Text("Import failed")
                     }
                 }
             }
+            .background(Color.gray)
             
             //upload button
             VStack{

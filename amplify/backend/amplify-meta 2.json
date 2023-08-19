@@ -1,0 +1,93 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-nerveswiftui-dev-135156-authRole",
+      "UnauthRoleArn": "arn:aws:iam::450904514466:role/amplify-nerveswiftui-dev-135156-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::450904514466:role/amplify-nerveswiftui-dev-135156-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-nerveswiftui-dev-135156-deployment",
+      "UnauthRoleName": "amplify-nerveswiftui-dev-135156-unauthRole",
+      "StackName": "amplify-nerveswiftui-dev-135156",
+      "StackId": "arn:aws:cloudformation:us-east-1:450904514466:stack/amplify-nerveswiftui-dev-135156/17e26950-3eb9-11ee-88e8-12f23567f153",
+      "AmplifyAppId": "dh9j712riccd1"
+    }
+  },
+  "api": {
+    "nerveswiftui": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "nerveswiftui1b928619",
+          "attributes": [
+            "UserPoolId"
+          ]
+        }
+      ],
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authnerveswiftui1b928619"
+            }
+          },
+          "additionalAuthenticationProviders": []
+        },
+        "GraphQLAPIIdOutput": "wo6cik45o5dobef4xy5npj5zzy",
+        "GraphQLAPIEndpointOutput": "https://56jbd4tfavcsrbdo5mtouwhjsy.appsync-api.us-east-1.amazonaws.com/graphql"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-nerveswiftui-dev-135156-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apinerveswiftui"
+      },
+      "lastPushTimeStamp": "2023-08-19T19:18:48.475Z",
+      "lastPushDirHash": "KPX0a4z/aTRNC8ilW7BLws46lGg="
+    }
+  },
+  "auth": {
+    "nerveswiftui1b928619": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [
+          "PHONE_NUMBER"
+        ],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "PHONE_NUMBER"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-nerveswiftui-dev-135156-deployment/amplify-cfn-templates/auth/nerveswiftui1b928619-cloudformation-template.json",
+        "logicalId": "authnerveswiftui1b928619"
+      },
+      "lastPushTimeStamp": "2023-08-19T19:18:48.475Z",
+      "output": {
+        "CreatedSNSRole": "arn:aws:iam::450904514466:role/sns1b928619135156-dev",
+        "UserPoolId": "us-east-1_blxw1LjhS",
+        "AppClientIDWeb": "298c75c5rqi317fgv6m3djcl3b",
+        "AppClientID": "3vtb5v6m5ii4r7be8mcg6affcn",
+        "IdentityPoolId": "us-east-1:e33a4925-4e08-4a06-84ed-f196d2eedc24",
+        "UserPoolArn": "arn:aws:cognito-idp:us-east-1:450904514466:userpool/us-east-1_blxw1LjhS",
+        "IdentityPoolName": "nerveswiftui1b928619_identitypool_1b928619__dev",
+        "UserPoolName": "nerveswiftui1b928619_userpool_1b928619"
+      },
+      "lastPushDirHash": "KD0R9HYwstqg18Ws/OJjfZ9wrFM="
+    }
+  }
+}

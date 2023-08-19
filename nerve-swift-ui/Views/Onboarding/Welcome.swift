@@ -8,20 +8,46 @@
 import SwiftUI
 
 enum Screen: Hashable {
-    case phoneNumber, confirmationCode, name, venmo, profilePicture, leaderboard, profile
+    case phoneNumber, confirmationCode, email, password, name, venmo, profilePicture, leaderboard, profile
     
     var prompt: String? {
         switch self {
         case .phoneNumber: return "Enter your phone number"
+        case .email: return "Enter your email"
+        case .password: return "Enter a password"
+        case .confirmationCode: return "Enter the confirmation code from your email"
         case .name: return "First and Last Name"
         case .venmo: return "Enter your Venmo to get paid"
         default: return nil
         }
     }
     
+    var keyboardType: UIKeyboardType {
+        switch self {
+        case .phoneNumber: return UIKeyboardType.phonePad
+        case .email: return UIKeyboardType.emailAddress
+        case .name: return UIKeyboardType.namePhonePad
+        default: return UIKeyboardType.default
+        }
+    }
+    
+    var textType: UITextContentType? {
+        switch self {
+        case .phoneNumber: return UITextContentType.telephoneNumber
+        case .email: return UITextContentType.emailAddress
+        case .confirmationCode: return UITextContentType.oneTimeCode
+        case .password: return UITextContentType.password
+        case .name: return UITextContentType.name
+        default: return nil
+        }
+    }
+    
     var next: Screen? {
         switch self {
-        case .phoneNumber: return .name
+        case .phoneNumber: return .email
+        case .email: return .password
+        case .password: return .confirmationCode
+        case .confirmationCode: return .name
         case .name: return .venmo
         case .venmo: return .profilePicture
         case .profilePicture: return .leaderboard
@@ -32,10 +58,13 @@ enum Screen: Hashable {
     var valueName: String? {
         switch self {
         case .phoneNumber: return "Phone Number"
+        case .email: return "Email"
+        case .password: return "Password"
+        case .confirmationCode: return "Confirmation Code"
         case .name: return "Name"
         case .venmo: return "Venmo"
         case .profilePicture: return "Profile Picture"
-        case .leaderboard: return"leaderboard"
+        case .leaderboard: return "leaderboard"
         default: return nil
         }
     }
@@ -85,7 +114,7 @@ struct OnboardingView: View {
             
             .navigationDestination(for: Screen.self) { screen in
                 switch screen {
-                case .phoneNumber, .confirmationCode, .name, .venmo:
+                case .phoneNumber, .confirmationCode, .email, .password , .name, .venmo:
                     OnboardingFormView(screen: screen)
                 case .profilePicture: ProfilePictureView()
                 case .leaderboard: LeaderboardView()
@@ -97,7 +126,7 @@ struct OnboardingView: View {
     }
     
     func getStartedButtonPressed () {
-        navModel.leaderboardPath.append(Screen.phoneNumber)
+        navModel.leaderboardPath.append(Screen.email)
     }
 }
 

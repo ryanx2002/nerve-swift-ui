@@ -12,12 +12,22 @@ class UserData: Identifiable, ObservableObject {
     
     var name: String
     var phoneNumber: String
+    var password: String
+    var confirmationCode: String
     var venmo: String
+    var change: String
+    var ranking: Int
+    var email: String
     
     init() {
         let userDefaults = UserDefaults.standard
-        self.name = userDefaults.string(forKey: "name") ?? ""
-        self.phoneNumber = userDefaults.string(forKey: "phoneNumber") ?? ""
-        self.venmo = userDefaults.string(forKey: "venmo") ?? ""
+        self.name = ""
+        self.email =  ""
+        self.phoneNumber =  ""
+        self.confirmationCode =  ""
+        self.password =  ""
+        self.venmo =  ""
+        self.change =  ""
+        self.ranking = 0
     }
 }

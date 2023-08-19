@@ -6,6 +6,10 @@
 //
 
 import SwiftUI
+import Amplify
+import AWSDataStorePlugin
+import AWSCognitoAuthPlugin
+import AWSAPIPlugin
 
 class NavigationModel: ObservableObject {
     
@@ -15,11 +19,24 @@ class NavigationModel: ObservableObject {
     @Published var isOnboarding: Bool
     
     init() {
-        let userDefaults = UserDefaults.standard
         self.leaderboardPath = NavigationPath()
         self.playPath = NavigationPath()
-        self.hasFinishedOnboarding = userDefaults.bool(forKey:"hasFinishedOnboarding")
+        self.hasFinishedOnboarding = false
         self.isOnboarding = false
+    }
+}
+
+func configureAmplify() {
+    let dataStorePlugin = AWSDataStorePlugin(modelRegistration: AmplifyModels())
+    do {
+        try Amplify.add(plugin: dataStorePlugin)
+        try Amplify.add(plugin: AWSCognitoAuthPlugin())
+        try Amplify.add(plugin: AWSAPIPlugin())
+        try Amplify.configure()
+        print("Initialized Amplify");
+    } catch {
+        // simplified error handling for the tutorial
+        print("Could not initialize Amplify: \(error)")
     }
 }
 
@@ -28,6 +45,10 @@ struct nerve_swift_uiApp: App {
     
     @StateObject var userData = UserData()
     @StateObject var navigationModel = NavigationModel()
+    
+    init() {
+        configureAmplify()
+    }
     
     
     var body: some Scene {
