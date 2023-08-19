@@ -64,7 +64,7 @@ struct OnboardingFormView: View {
             Spacer()
             
         }
-        .background(Color(UIColor(red: 0.988, green: 0.965, blue: 0.953, alpha: 1)))
+        .background(Color(UIColor(red: 0.125, green: 0.118, blue: 0.118, alpha: 1)))
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading:
                                 Button(action: {

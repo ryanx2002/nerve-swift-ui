@@ -57,6 +57,7 @@ struct PlayView: View {
                                 Image(systemName: "hourglass")
                                     .foregroundColor(.white)
                                 TimerManager()
+                                    .baselineOffset(-5)
                             }
                         }
                         .padding(5)
@@ -104,8 +105,15 @@ struct PlayView: View {
                     case .loading:
                         EmptyView()
                     case .loaded(let movie):
-                        Text("asdf")
-                            .foregroundColor(.blue)
+                        HStack{
+                            Text("#asdf")
+                                .foregroundColor(.blue)
+                                .padding(.leading, 10)
+                            Spacer()
+                            Image(systemName: "ellipsis")
+                                .foregroundColor(.blue)
+                                .padding(.trailing, 10)
+                        }
                         ZStack (alignment: .center){
                             VideoPlayer(player: AVPlayer(url: movie.url))
                                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
@@ -133,10 +141,13 @@ struct PlayView: View {
                             }) {
                                 Image(systemName: isLiked ? "heart.fill" : "heart")
                                     .foregroundColor(isLiked ? .red : .black)
+                                    .frame(width: 18, height: 18)
                             }
                                 .padding(.leading, 10)
                                 .animation(.easeIn (duration: duration))
                             Image(systemName: "bubble.right")
+                                .resizable()
+                                .frame(width: 18, height: 18)
                             Spacer()
                         }
                     case .failed:
