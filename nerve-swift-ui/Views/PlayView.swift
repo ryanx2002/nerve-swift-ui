@@ -34,6 +34,8 @@ struct PlayView: View {
         }
     }
     
+    let nervePink = UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)
+
     let avPlayer = AVPlayer(url: Movie.defaultPlayViewVideoURL)
     
     var body: some View {
@@ -159,31 +161,28 @@ struct PlayView: View {
             //upload button
             VStack{
                 PhotosPicker("Play", selection: $selectedItem, matching: .videos)
-                    .foregroundColor(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)))
-                    .font(.system(size: 30))
-                    .bold()
+                    .font(.system(size: 26))
+                    .foregroundColor(.white)
+                    .glowBorder(color: Color(nervePink), lineWidth: 2)
+                    .kerning(2.0)
+                    .shadow(color: Color(nervePink).opacity(0.5), radius: 5)
                     .frame(width: 120)
                     .frame(height: 50)
-                    .cornerRadius(10)
                     .background(
-                        ZStack {
-                            Rectangle()
-                                .fill(Color.white)
-                                .cornerRadius(10)
-                            LinearGradient(
-                                gradient: Gradient(colors: [Color.white.opacity(0.3), Color.clear]),
-                                startPoint: .top,
-                                endPoint: .bottom
-                            )
-                            .mask(Rectangle().cornerRadius(10))
-                        }
+                        Rectangle()
+                            .fill(Color.black.opacity(0.8))
                     )
                     .fullScreenCover(isPresented: $showSecondScreen, content: {
                         SecondScreen()
                     })
             }
-            .border(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)), width: 3)
-            .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 4)
+            .border(Color(nervePink), width: 1)
+            .padding(1.0)
+            .border(Color.white, width: 1)
+            .padding(1.0)
+            .border(Color(nervePink), width: 1)
+            .glowBorder(color: Color(nervePink), lineWidth: 1)
+            .shadow(color: Color(nervePink).opacity(0.5), radius: 5)
             .padding(.top, 625)
         }
         
