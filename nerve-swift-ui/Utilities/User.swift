@@ -17,4 +17,5 @@ struct User: Identifiable {
     let ranking: Int
     let views: Int
     let profilePic: UIImage?
+    let change: String
 }

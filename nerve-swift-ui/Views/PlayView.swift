@@ -25,107 +25,110 @@ struct PlayView: View {
     let avPlayer = AVPlayer(url: Movie.defaultPlayViewVideoURL)
     
     var body: some View {
-        ScrollView {
-            
-            ZStack(alignment: .center){
-                VideoPlayer(player: avPlayer)
-                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        ZStack {
+            ScrollView {
                 
-                //timer, dare, and upload button
-                VStack {
+                ZStack(alignment: .center){
+                    VideoPlayer(player: avPlayer)
+                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
                     
-                    Spacer()
-                    
-                    //timer
+                    //timer, dare, and upload button
                     VStack {
-                        HStack {
-                            Image(systemName: "hourglass")
-                                .foregroundColor(.white)
+                        
+                        Spacer()
+                        
+                        //timer
+                        VStack {
                             Text("Time Remaining")
                                 .foregroundColor(.white)
+                            HStack (spacing: 3){
+                                Image(systemName: "hourglass")
+                                    .foregroundColor(.white)
+                                TimerManager()
+                            }
                         }
-                        .padding(.top, 5)
-                        .padding(.horizontal, 5)
-                        TimerManager()
-                    }
-                    .background(Color.black.opacity(0.3))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    Spacer()
-                    Spacer()
-                    
-                    //dare
-                    VStack(alignment: .leading){
-                        Text("Streak a field")
-                            .font(.title)
-                            .foregroundColor(Color(UIColor(red: 250, green: 255, blue: 0, alpha: 1)))
-                            .multilineTextAlignment(.center)
-                            .frame(maxWidth: .infinity)
-                            .bold()
-                            .padding(.bottom, 10)
-                        Text("$200")
-                            .font(.system(size: 45))
-                            .foregroundColor(Color(UIColor(red: 250, green: 255, blue: 0, alpha: 1)))
-                            .multilineTextAlignment(.center)
-                            .frame(maxWidth: .infinity)
-                            .bold()
+                        .padding(5)
+                        .background(Color.black.opacity(0.3))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.leading, 10)
                         
+                        Spacer()
+                        Spacer()
+                        
+                        //dare
+                        VStack(alignment: .leading){
+                            Text("Streak a field")
+                                .font(.title)
+                                .foregroundColor(Color(UIColor(red: 250, green: 255, blue: 0, alpha: 1)))
+                                .multilineTextAlignment(.center)
+                                .frame(maxWidth: .infinity)
+                                .bold()
+                                .padding(.bottom, 10)
+                            Text("$200")
+                                .font(.system(size: 45))
+                                .foregroundColor(Color(UIColor(red: 250, green: 255, blue: 0, alpha: 1)))
+                                .multilineTextAlignment(.center)
+                                .frame(maxWidth: .infinity)
+                                .bold()
+                            
+                        }
+                        .frame(width: 220, height: 150)
+                        .background(Color.black.opacity(0.4))
+                        .multilineTextAlignment(.center)
+                        
+                        Spacer()
+                        Spacer()
+                        
+                        
+                        Spacer()
                     }
-                    .frame(width: 220, height: 150)
-                    .background(Color.black.opacity(0.4))
-                    .multilineTextAlignment(.center)
-                    
-                    Spacer()
-                    Spacer()
-                    
-                    //upload button
-                    VStack{
-                        PhotosPicker("Upload", selection: $selectedItem, matching: .videos)
-                            .foregroundColor(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)))
-                            .font(.system(size: 30))
-                            .bold()
-                            .frame(width: 200)
-                            .frame(height: 50)
-                            .cornerRadius(10)
-                            .background(
-                                ZStack {
-                                    Rectangle()
-                                        .fill(Color.white)
-                                        .cornerRadius(10)
-                                    LinearGradient(
-                                        gradient: Gradient(colors: [Color.white.opacity(0.3), Color.clear]),
-                                        startPoint: .top,
-                                        endPoint: .bottom
-                                    )
-                                    .mask(Rectangle().cornerRadius(10))
-                                }
-                            )
-                            .fullScreenCover(isPresented: $showSecondScreen, content: {
-                                SecondScreen()
-                            })
-                    }
-                    .border(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)), width: 3)
-                    .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 4)
-                    
-                    Spacer()
+                    .frame(maxWidth: .infinity, alignment: .center)
                 }
-                .frame(maxWidth: .infinity, alignment: .center)
+                
+                //the uploaded video should appear here
+                VStack{
+                    switch loadState {
+                    case .loading:
+                        EmptyView()
+                    case .loaded(let movie):
+                        VideoPlayer(player: AVPlayer(url: movie.url))
+                            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                    case .failed:
+                        Text("Import failed")
+                    }
+                }
             }
             
-            //the uploaded video should appear here
+            //upload button
             VStack{
-                switch loadState {
-                case .loading:
-                    EmptyView()
-                case .loaded(let movie):
-                    VideoPlayer(player: AVPlayer(url: movie.url))
-                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-                case .failed:
-                    Text("Import failed")
-                }
+                PhotosPicker("Play", selection: $selectedItem, matching: .videos)
+                    .foregroundColor(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)))
+                    .font(.system(size: 30))
+                    .bold()
+                    .frame(width: 120)
+                    .frame(height: 50)
+                    .cornerRadius(10)
+                    .background(
+                        ZStack {
+                            Rectangle()
+                                .fill(Color.white)
+                                .cornerRadius(10)
+                            LinearGradient(
+                                gradient: Gradient(colors: [Color.white.opacity(0.3), Color.clear]),
+                                startPoint: .top,
+                                endPoint: .bottom
+                            )
+                            .mask(Rectangle().cornerRadius(10))
+                        }
+                    )
+                    .fullScreenCover(isPresented: $showSecondScreen, content: {
+                        SecondScreen()
+                    })
             }
+            .border(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)), width: 3)
+            .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 4)
+            .padding(.top, 650)
         }
-        
         
         .navigationTitle("Play")
         .addProfileToolbar(pressedHandler: profilePressed)

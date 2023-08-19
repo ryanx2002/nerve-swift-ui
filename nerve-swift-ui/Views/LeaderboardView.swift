@@ -20,7 +20,8 @@ struct LeaderboardView: View {
             name: userData.name,
             ranking: Int.random(in: 6...6),
             views: Int.random(in: 0...0),
-            profilePic: getSavedImage(named: "profile.jpg") ?? UIImage(systemName: "person.crop.circle")!
+            profilePic: getSavedImage(named: "profile.jpg") ?? UIImage(systemName: "person.crop.circle")!,
+            change: "same"
         )
         
         //originally the line below said "var", but xcode said to change it to let
@@ -29,103 +30,90 @@ struct LeaderboardView: View {
         return users.sorted { $0.ranking < $1.ranking }
     }
     
+    init() {
+      let navBarAppearance = UINavigationBar.appearance()
+      navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+      navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+    }
+    
     var body: some View {
         NavigationStack(path: $navModel.leaderboardPath) {
-            if navModel.hasFinishedOnboarding {
+            //if navModel.hasFinishedOnboarding {
                 VStack {
                     List{
-                        HStack (alignment: .bottom){
-                            Spacer()
-                            VStack {
-                                ZStack (alignment: .bottom){
-                                    Image("money")
-                                        .resizable()
-                                        .frame(width: 50, height: 50)
-                                    Text("$5,000")
-                                        .bold()
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 15))
-                                        .padding(.bottom, 5)
-                                }
-                                ZStack (alignment: .bottom) {
-                                    Rectangle()
-                                        .fill(Color(UIColor(red: 0.753, green: 0.753, blue: 0.753, alpha: 1)))
-                                        .frame(width: 70, height: 80)
-                                    VStack {
-                                        Text("2nd")
-                                            .bold()
-                                            .foregroundColor(.white)
-                                            .font(.system(size: 20))
-                                        Text("Prize")
-                                            .bold()
-                                            .foregroundColor(.white)
-                                            .font(.system(size: 12))
-                                            .padding(.bottom, 20)
-                                    }
-                                }
-                            }
-                            ZStack (alignment: .bottom){
-                                Rectangle()
-                                    .fill(Color(UIColor(red: 0.906, green: 0.737, blue: 0.333, alpha: 1)))
-                                    .frame(width: 70, height: 120)
-                                Text(String("1st\nPrize"))
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 20))
-                            }
-                            ZStack (alignment: .bottom){
-                                Rectangle()
-                                    .fill(Color(UIColor(red: 0.725, green: 0.447, blue: 0.176, alpha: 1)))
-                                    .frame(width: 70, height: 40)
-                                Text(String("3rd\nPrize"))
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 20))
-                            }
-                            Spacer()
-                        }
-                        
+                        Image("prizes")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 400, height: 200)
+                            .padding(.bottom, 10)
+                            .listRowBackground(Color.black)
                         ForEach(users){ user in
                             HStack{
-                                Text(String("#\(user.ranking)"))
-                                    .monospaced()
+                                VStack (spacing: 4) {
+                                    Text(String("\(user.ranking)"))
+                                    
+                                    if user.ranking == 1 {
+                                        Rectangle()
+                                            .fill(Color(UIColor(red: 0.906, green: 0.737, blue: 0.333, alpha: 1)))
+                                            .frame(width: 10, height: 2)
+                                    } else if user.ranking == 2 {
+                                        Rectangle()
+                                            .fill(Color(UIColor(red: 0.753, green: 0.753, blue: 0.753, alpha: 1)))
+                                            .frame(width: 10, height: 2)
+                                    } else if user.ranking == 3 {
+                                        Rectangle()
+                                            .fill(Color(UIColor(red: 0.725, green: 0.447, blue: 0.176, alpha: 1)))
+                                            .frame(width: 10, height: 2)
+                                    }
+                                    
+                                }
                                 if let profilePic = user.profilePic {
                                     Image(uiImage: profilePic)
                                         .resizable()
                                         .background(Color.white)
                                         .frame(width: 40, height: 40)
-                                        .border(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)), width: 1.0)
                                         .cornerRadius(20)
-                                        .overlay(
-                                                Circle()
-                                                    .stroke(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)), lineWidth: 1.3)
-                                            )
+
+
                                 } else {
                                     Image(systemName: "person.crop.circle")
                                         .resizable()
                                         .frame(width: 40, height: 40)
-                                        .border(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)), width: 1.0)
                                         .cornerRadius(20)
-                                        .overlay(
-                                                Circle()
-                                                    .stroke(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)), lineWidth: 1.3)
-                                            )
-
                                 }
-                                Text(user.name)
-                                    .monospaced()
-                                Spacer()
-                                Text(String(user.views))
-                                    .monospaced()
-                                Image(systemName: "eye")
-                                    .scaleEffect(0.7)
+                                VStack (alignment: .leading, spacing: 4){
+                                    HStack {
+                                        Text(user.name)
+                                        switch user.change {
+                                            case "up":
+                                                Image("up")
+                                            case "down":
+                                                Image("down")
+                                            default :
+                                                Image("same")
+                                        }
+                                        
+                                        Spacer()
+                                        HStack (spacing: 2){
+                                            Text(String(user.views))
+                                            Image(systemName: "eye")
+                                                .scaleEffect(0.7)
+                                        }
+                                    }
+                                    Rectangle()
+                                        .fill(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)))
+                                        .frame(width: (CGFloat(user.views) * 0.4), height: 2)
+                                }
                             }
-                            
                         }
+                        .listRowBackground(Color.black)
                     }
                     .listStyle(PlainListStyle())
                 }
+                .background(Color.black)
                 .navigationTitle("Leaderboard")
                 .addProfileToolbar(pressedHandler: profilePressed)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
                 .navigationDestination(for: Screen.self) { screen in
                     switch screen {
                     case .profile: ProfilePageView()
@@ -134,7 +122,7 @@ struct LeaderboardView: View {
                     }
                 }
                 
-            }
+            /*}
             else
             {
                 Color.white
@@ -148,8 +136,11 @@ struct LeaderboardView: View {
                         OnboardingView()
                     }
                 
-            }
+            }*/
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.black)
+    
     }
     
     
@@ -166,6 +157,75 @@ extension String: Identifiable {
 
 struct LeaderboardView_Previews: PreviewProvider {
     static var previews: some View {
-        LeaderboardView().environmentObject(NavigationModel())
+        LeaderboardView().environmentObject(UserData()).environmentObject(NavigationModel())
     }
 }
+
+
+
+
+
+
+/*
+ HStack (alignment: .bottom){
+     Spacer()
+     VStack {
+         ZStack (alignment: .bottom){
+             Text("$5,000")
+                 .bold()
+                 .foregroundColor(.white)
+                 .font(.system(size: 15))
+                 .padding(.bottom, 5)
+         }
+         ZStack (alignment: .bottom) {
+             Rectangle()
+                 .fill(Color(UIColor(red: 0.753, green: 0.753, blue: 0.753, alpha: 1)))
+                 .frame(width: 70, height: 80)
+             VStack {
+                 Text("2nd")
+                     .bold()
+                     .foregroundColor(.white)
+                     .font(.system(size: 20))
+                 Text("Prize")
+                     .bold()
+                     .foregroundColor(.white)
+                     .font(.system(size: 12))
+                     .padding(.bottom, 20)
+             }
+         }
+     }
+     ZStack (alignment: .bottom){
+         Rectangle()
+             .fill(Color(UIColor(red: 0.906, green: 0.737, blue: 0.333, alpha: 1)))
+             .frame(width: 70, height: 120)
+         Text(String("1st\nPrize"))
+             .foregroundColor(.white)
+             .font(.system(size: 20))
+     }
+     ZStack (alignment: .bottom){
+         Rectangle()
+             .fill(Color(UIColor(red: 0.725, green: 0.447, blue: 0.176, alpha: 1)))
+             .frame(width: 70, height: 40)
+         Text(String("3rd\nPrize"))
+             .foregroundColor(.white)
+             .font(.system(size: 20))
+     }
+     Spacer()
+ }
+ .frame(maxWidth: .infinity, maxHeight: .infinity)
+ .background(Color.blue)
+ */
+
+
+
+
+
+/*
+ profile picture old pink stroke
+ 
+ .border(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)), width: 1.0)
+ .overlay(
+         Circle()
+             .stroke(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)), lineWidth: 1.3)
+     )
+ */
