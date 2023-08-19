@@ -87,12 +87,24 @@ struct PlayView: View {
                 
                 //the uploaded video should appear here
                 VStack{
+                    
                     switch loadState {
                     case .loading:
                         EmptyView()
                     case .loaded(let movie):
+                        Text("asdf")
+                            .foregroundColor(.blue)
                         VideoPlayer(player: AVPlayer(url: movie.url))
                             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                            .onTapGesture (count: 2) {
+                                <#code#>
+                            }
+                        HStack {
+                            Image(systemName: "heart")
+                                .padding(.leading, 10)
+                            Image(systemName: "bubble.right")
+                            Spacer()
+                        }
                     case .failed:
                         Text("Import failed")
                     }
@@ -127,7 +139,7 @@ struct PlayView: View {
             }
             .border(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)), width: 3)
             .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 4)
-            .padding(.top, 650)
+            .padding(.top, 625)
         }
         
         .navigationTitle("Play")
