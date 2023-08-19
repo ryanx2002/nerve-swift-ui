@@ -9,6 +9,8 @@ import SwiftUI
 
 struct OnboardingFormView: View {
     
+    let nervePink = UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)
+    
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var navigationModel: NavigationModel
     @EnvironmentObject var userData: UserData
@@ -21,13 +23,12 @@ struct OnboardingFormView: View {
             Spacer()
             
             Text(screen.prompt!)
-                .font(.system(size: 20))
-                .foregroundColor(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)))
-                .bold()
-                .monospaced()
-                .kerning(1.0)
-                .shadow(color: Color.pink.opacity(0.65), radius: 10)
-            
+                .font(.system(size: 26))
+                .foregroundColor(.white)
+                .glowBorder(color: Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)), lineWidth: 3)
+                .kerning(2.0)
+                .shadow(color: Color(nervePink).opacity(0.65), radius: 10)
+
             TextField(screen.valueName!, text: binding())
                 .padding(.top, 50)
                 .padding(.bottom, 50)
@@ -36,30 +37,25 @@ struct OnboardingFormView: View {
             
             Button(action: nextButtonPressed) {
                 Text ("Next")
-                    .foregroundColor(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)))
-                    .font(.system(size: 20))
-                    .fontWeight(.medium)
-                    .monospaced()
-                    .kerning(1.0)
-                    .frame(width: 200)
+                    .font(.system(size: 26))
+                    .foregroundColor(.white)
+                    .glowBorder(color: Color(nervePink), lineWidth: 2)
+                    .kerning(2.0)
+                    .shadow(color: Color(nervePink).opacity(0.5), radius: 5)
+                    .frame(width: 120)
                     .frame(height: 50)
-                    .cornerRadius(10)
                     .background(
-                        ZStack {
-                            Rectangle()
-                                .fill(Color.white)
-                                .cornerRadius(10)
-                            LinearGradient(
-                                gradient: Gradient(colors: [Color.white.opacity(0.3), Color.clear]),
-                                startPoint: .top,
-                                endPoint: .bottom
-                            )
-                            .mask(Rectangle().cornerRadius(10))
-                        }
+                        Rectangle()
+                            .fill(Color.white.opacity(0.0))
                     )
             }
-            .border(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)), width: 2)
-            .shadow(color: Color.black.opacity(0.25), radius: 5, x: 0, y: 4)
+            .border(Color(nervePink), width: 1)
+            .padding(1.0)
+            .border(Color.white, width: 1)
+            .padding(1.0)
+            .border(Color(nervePink), width: 1)
+            .glowBorder(color: Color(nervePink), lineWidth: 1)
+            .shadow(color: Color(nervePink).opacity(0.5), radius: 5)
             
             Spacer()
             

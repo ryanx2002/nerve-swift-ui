@@ -43,6 +43,8 @@ enum Screen: Hashable {
 
 struct OnboardingView: View {
     
+    let nervePink = UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)
+    
     @EnvironmentObject var navModel: NavigationModel
     var body: some View {
         NavigationStack (path: $navModel.leaderboardPath) {
@@ -51,37 +53,32 @@ struct OnboardingView: View {
                 VStack {
                     Text("By pressing 'Play' you're \naccepting the Terms.")
                         .font(.system(size: 10))
-                        .foregroundColor(.gray.opacity(0.9))
+                        .foregroundColor(.white.opacity(0.9))
                         .multilineTextAlignment(.center)
                         .padding(.top, 350)
                         .padding(.bottom, 10)
                     
                     Button(action: getStartedButtonPressed) {
-                        Text("Play")
-                            .foregroundColor(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)))
-                            .font(.system(size: 20))
-                            .fontWeight(.medium)
-                            .monospaced()
-                            .kerning(1.0)
-                            .frame(width: 200)
+                        Text ("Play")
+                            .font(.system(size: 26))
+                            .foregroundColor(.white)
+                            .glowBorder(color: Color(nervePink), lineWidth: 2)
+                            .kerning(2.0)
+                            .shadow(color: Color(nervePink).opacity(0.5), radius: 5)
+                            .frame(width: 120)
                             .frame(height: 50)
-                            .cornerRadius(10)
                             .background(
-                                ZStack {
-                                    Rectangle()
-                                        .fill(Color.white)
-                                        .cornerRadius(10)
-                                    LinearGradient(
-                                        gradient: Gradient(colors: [Color.white.opacity(0.3), Color.clear]),
-                                        startPoint: .top,
-                                        endPoint: .bottom
-                                    )
-                                    .mask(Rectangle().cornerRadius(10))
-                                }
+                                Rectangle()
+                                    .fill(Color.white.opacity(0.0))
                             )
                     }
-                    .border(Color(UIColor(red: 1, green: 0, blue: 0.898, alpha: 1)), width: 2)
-                    .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 4)
+                    .border(Color(nervePink), width: 1)
+                    .padding(1.0)
+                    .border(Color.white, width: 1)
+                    .padding(1.0)
+                    .border(Color(nervePink), width: 1)
+                    .glowBorder(color: Color(nervePink), lineWidth: 1)
+                    .shadow(color: Color(nervePink).opacity(0.5), radius: 5)
                     
                 }
             }
