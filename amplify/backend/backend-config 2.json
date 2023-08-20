@@ -7,7 +7,7 @@
             "UserPoolId"
           ],
           "category": "auth",
-          "resourceName": "nerveswiftui1b928619"
+          "resourceName": "nerveswiftuia019ef1ba019ef1b"
         }
       ],
       "output": {
@@ -16,7 +16,7 @@
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
-              "userPoolId": "authnerveswiftui1b928619"
+              "userPoolId": "authnerveswiftuia019ef1ba019ef1b"
             }
           }
         }
@@ -26,7 +26,7 @@
     }
   },
   "auth": {
-    "nerveswiftui1b928619": {
+    "nerveswiftuia019ef1ba019ef1b": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -43,10 +43,10 @@
         ],
         "socialProviders": [],
         "usernameAttributes": [
-          "PHONE_NUMBER"
+          "EMAIL"
         ],
         "verificationMechanisms": [
-          "PHONE_NUMBER"
+          "EMAIL"
         ]
       },
       "providerPlugin": "awscloudformation",

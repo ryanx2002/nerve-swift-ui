@@ -5,10 +5,11 @@
 //  Created by Ryan Xie on 8/2/23.
 //
 
-import AVKit
 import SwiftUI
 import Amplify
 import AWSCognitoAuthPlugin
+import AVFoundation
+import AVKit
 
 func getSavedImage(named: String) -> UIImage? {
     if let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) {
@@ -44,9 +45,19 @@ struct ProfilePageView: View {
             case .complete:
                 // Sign Out completed fully and without errors.
                 print("Signed out successfully")
-                navModel.leaderboardPath.removeLast(navModel.leaderboardPath.count)
+                let defaults = UserDefaults.standard
+                defaults.set("", forKey: "name")
+                defaults.set("", forKey: "email")
+                defaults.set("", forKey: "venmo")
+                userData.name = ""
+                userData.email = ""
+                userData.password = ""
+                userData.venmo = ""
+                userData.confirmationCode = ""
                 navModel.isOnboarding = false
                 navModel.hasFinishedOnboarding = false
+                navModel.leaderboardPath.removeLast(navModel.leaderboardPath.count)
+                
 
             case let .partial(revokeTokenError, globalSignOutError, hostedUIError):
                 // Sign Out completed with some errors. User is signed out of the device.
@@ -96,11 +107,14 @@ struct ProfilePageView: View {
                     }
                     .padding(.trailing, 40)
                     VStack{
-                        
+                        HStack{
+                            Spacer()
+                            Button { Task { await signOut() }} label: {Text("Sign out")}
+                        }
                         HStack{
                             VStack (spacing: -1) {
                                 HStack {
-                                    Text("#")
+                                    Text("#6")
                                         .bold()
                                         .foregroundColor(Color.white)
                                     switch userData.change {
@@ -119,7 +133,7 @@ struct ProfilePageView: View {
                             .padding(.bottom, 50)
                             
                             VStack {
-                                Text("3.4K")
+                                Text("0")
                                     .bold()
                                     .foregroundColor(Color.white)
                                 Text("Views")
@@ -137,7 +151,7 @@ struct ProfilePageView: View {
                             }
                             .padding(.bottom, 50)
                         }
-                        Button { Task { await signOut() }} label: {Text("Sign out")}
+                        
                     }
                 }
                 HStack{
@@ -180,7 +194,7 @@ struct ProfilePageView: View {
             }
             .padding(.top, -20)
         }
-        .background(Color.gray)
+        .background(Color.black)
     }
 }
 

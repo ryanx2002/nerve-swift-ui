@@ -42,8 +42,8 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-nerveswiftui-dev-135156-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apinerveswiftui"
       },
-      "lastPushTimeStamp": "2023-08-19T19:18:48.475Z",
-      "lastPushDirHash": "KPX0a4z/aTRNC8ilW7BLws46lGg="
+      "lastPushTimeStamp": "2023-08-20T00:14:28.222Z",
+      "lastPushDirHash": "MqSpILEfpwtixjI9DWgaMpvQX9Y="
     }
   },
   "auth": {
@@ -76,7 +76,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-nerveswiftui-dev-135156-deployment/amplify-cfn-templates/auth/nerveswiftui1b928619-cloudformation-template.json",
         "logicalId": "authnerveswiftui1b928619"
       },
-      "lastPushTimeStamp": "2023-08-19T19:18:48.475Z",
+      "lastPushTimeStamp": "2023-08-20T00:14:28.222Z",
       "output": {
         "CreatedSNSRole": "arn:aws:iam::450904514466:role/sns1b928619135156-dev",
         "UserPoolId": "us-east-1_blxw1LjhS",
@@ -87,7 +87,7 @@
         "IdentityPoolName": "nerveswiftui1b928619_identitypool_1b928619__dev",
         "UserPoolName": "nerveswiftui1b928619_userpool_1b928619"
       },
-      "lastPushDirHash": "KD0R9HYwstqg18Ws/OJjfZ9wrFM="
+      "lastPushDirHash": "frdhpJyO1w7ZIceFrxfcIUWFSo4="
     }
   }
 }

@@ -5,10 +5,10 @@
 //  Created by Ryan Xie on 8/4/23.
 //
 
-import AVKit
 import PhotosUI
 import SwiftUI
 import AVFoundation
+import AVKit
 
 struct PlayView: View {
     
@@ -108,7 +108,7 @@ struct PlayView: View {
                         EmptyView()
                     case .loaded(let movie):
                         HStack{
-                            Text("#\(userData.ranking)")
+                            Text("#6")
                                 .foregroundColor(.white)
                                 .bold()
                                 .padding(.leading, 10)
@@ -254,6 +254,7 @@ struct PlayView: View {
     func profilePressed() {
         navModel.leaderboardPath.append(Screen.profile)
     }
+    
 }
 
 struct SecondScreen: View {

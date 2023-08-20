@@ -123,6 +123,8 @@ struct ProfilePictureView: View {
         }
     }
     
+    
+    
     func finishButtonPressed () async {
         
         if (image != nil) {
