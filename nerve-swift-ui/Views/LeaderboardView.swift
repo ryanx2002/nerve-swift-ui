@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Amplify
+import Contacts
 
 func fetchCurrentAuthSession() async -> Bool {
     do {
@@ -20,6 +21,39 @@ func fetchCurrentAuthSession() async -> Bool {
         print("Unexpected error: \(error)")
         return false
     }
+}
+
+func fetchAllContacts() async {
+    let store = CNContactStore()
+    
+    let keys = [CNContactGivenNameKey, CNContactPhoneNumbersKey] as [CNKeyDescriptor]
+    
+    let fetchRequest = CNContactFetchRequest(keysToFetch: keys)
+    
+    do {
+        try store.enumerateContacts(with: fetchRequest, usingBlock: {contact, result in
+            
+                print(contact.givenName)
+                for number in contact.phoneNumbers {
+                    switch number.label {
+                        
+                        case CNLabelPhoneNumberMobile:
+                            print("- Mobile: \(number.value.stringValue)")
+                        case CNLabelPhoneNumberMain:
+                            print("- Main: \(number.value.stringValue)")
+                        default:
+                            print("- Other: \(number.value.stringValue)")
+                        
+                    }
+                }
+            
+        
+            })
+    }
+    catch {
+        print("Error")
+    }
+    
 }
 
 struct LeaderboardView: View {
@@ -63,6 +97,12 @@ struct LeaderboardView: View {
                             .frame(width: 400, height: 200)
                             .padding(.bottom, 10)
                             .listRowBackground(Color.black)
+                            .onAppear {
+                                
+                                Task.init {
+                                    await fetchAllContacts()
+                                }
+                            }
                         ForEach(users){ user in
                             HStack{
                                 VStack (spacing: 4) {
