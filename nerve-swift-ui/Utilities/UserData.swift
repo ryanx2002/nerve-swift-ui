@@ -20,7 +20,6 @@ class UserData: Identifiable, ObservableObject {
     var email: String
     
     init() {
-        let userDefaults = UserDefaults.standard
         self.name = ""
         self.email =  ""
         self.phoneNumber =  ""

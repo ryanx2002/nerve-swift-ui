@@ -131,14 +131,6 @@ struct ProfilePictureView: View {
             saveImage(image: image!)
         }
         
-        let defaults = UserDefaults.standard
-        defaults.set(userData.name, forKey: "name")
-        defaults.set(userData.email, forKey: "email")
-        defaults.set(userData.phoneNumber, forKey: "phoneNumber")
-        defaults.set(userData.venmo, forKey: "venmo")
-        defaults.set(true, forKey: "onboardingCompleted")
-        defaults.set(true, forKey: "hasFinishedOnboarding")
-        
         do{
             let item = User(name: userData.name,
                             venmo: userData.venmo, email: userData.email)

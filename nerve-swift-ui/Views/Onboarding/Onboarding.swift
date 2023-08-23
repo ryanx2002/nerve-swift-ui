@@ -109,8 +109,7 @@ struct OnboardingFormView: View {
                                 print("Sign in succeeded")
                             }
                         
-                        let defaults = UserDefaults.standard
-                        defaults.set(true, forKey: "hasFinishedOnboarding")
+                        //CALL BACKEND FOR USER ATTRIBUTES
                         
                         navigationModel.leaderboardPath.removeLast(navigationModel.leaderboardPath.count)
                         navigationModel.isOnboarding = false

@@ -14,13 +14,13 @@ import AWSAPIPlugin
 class NavigationModel: ObservableObject {
     
     @Published var leaderboardPath: NavigationPath
-    @Published var playPath: NavigationPath
+    //@Published var playPath: NavigationPath
     @Published var hasFinishedOnboarding: Bool
     @Published var isOnboarding: Bool
     
     init() {
         self.leaderboardPath = NavigationPath()
-        self.playPath = NavigationPath()
+        //self.playPath = NavigationPath()
         self.hasFinishedOnboarding = false
         self.isOnboarding = false
     }

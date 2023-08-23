@@ -45,10 +45,6 @@ struct ProfilePageView: View {
             case .complete:
                 // Sign Out completed fully and without errors.
                 print("Signed out successfully")
-                let defaults = UserDefaults.standard
-                defaults.set("", forKey: "name")
-                defaults.set("", forKey: "email")
-                defaults.set("", forKey: "venmo")
                 userData.name = ""
                 userData.email = ""
                 userData.password = ""
